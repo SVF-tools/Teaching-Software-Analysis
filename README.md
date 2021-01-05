@@ -8,6 +8,7 @@ This assignment requested the supports of the svf library. To compile the execua
 
 
 <summary> Install svf-lib using npm (tested on both Ubuntu and MacOS)</summary>
+
 ```
 npm i --silent svf-lib --prefix ${HOME}
 ```

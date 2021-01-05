@@ -2,7 +2,7 @@
 //
 //                     SVF: Static Value-Flow Analysis
 //
-// Copyright (C) <2013->  <Yulei Sui>
+// Copyright (C) <2013->
 //
 
 // This program is free software: you can redistribute it and/or modify
@@ -23,13 +23,10 @@
 /*
  // A driver program of SVF including usages of SVF APIs
  //
- // Author: Yulei Sui,
+ // 
  */
 
 #include "SVF-FE/LLVMUtil.h"
-#include "Graphs/SVFG.h"
-#include "WPA/Andersen.h"
-#include "SABER/LeakChecker.h"
 #include "SVF-FE/PAGBuilder.h"
 
 using namespace SVF;
@@ -39,13 +36,6 @@ using namespace std;
 static llvm::cl::opt<std::string> InputFilename(cl::Positional,
         llvm::cl::desc("<input bitcode>"), llvm::cl::init("-"));
 
-static llvm::cl::opt<bool> LEAKCHECKER("leak", llvm::cl::init(false),
-                                       llvm::cl::desc("Memory Leak Detection"));
-
-ICFGNode *srcNode = NULL;
-ICFGNode *sinkNode = NULL;
-PAG *pag;
-std::set<const NodeID*> path_worklist;
 
 int main(int argc, char ** argv) {
 
@@ -60,7 +50,7 @@ int main(int argc, char ** argv) {
 
     /// Build Program Assignment Graph (PAG)
     PAGBuilder builder;
-    pag = builder.build (svfModule);
+    PAG* pag = builder.build (svfModule);
     pag->dump ("pag");
 
 
