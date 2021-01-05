@@ -1,7 +1,5 @@
 # SVF-Teaching
 Teaching Software Analysis via SVF
-# Control Flow Reachability Assignment
-In this assignment, you are requested to complete a function which will output the path between the source node and sink node.
 
 ## 1. Setup the assignment environment 
 This assignment requested the supports of the svf library. To compile the execuateable, you need to setup the svf library on your device. 
