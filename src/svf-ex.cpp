@@ -51,7 +51,7 @@ int main(int argc, char ** argv) {
     /// Build Program Assignment Graph (PAG)
     PAGBuilder builder;
     PAG* pag = builder.build (svfModule);
-    pag->dump ("pag");
+    // pag->dump ("pag");
 
 
     return 0;
