@@ -21,11 +21,7 @@ source ./env.sh
 While the environment has been setup, you are now able to start your assignment.
 
 ## 2. Coding your solution
-For this assignment, you are requested to design a function which will query all reachable paths between the source and sink function.
-```
-src() is the source function.
-sink() is the sink function.
-```
+
 ## 3. Build and submit your solution
 Your submission requests 2 components which are your solution codes and the execuateable file of your solution.   
 
