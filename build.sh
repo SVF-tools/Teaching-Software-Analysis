@@ -1,3 +1,5 @@
+#!/bin/bash
+source env.sh
 mkdir build
 cd build
 cmake ..
