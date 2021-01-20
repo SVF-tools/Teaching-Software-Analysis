@@ -22,19 +22,18 @@ While the environment has been set up, you are now able to start your assignment
 ## 2. Coding your solution
 
 ## 3. Build and submit your solution
-Your submission requests 2 components which are your solution codes and the executable  file of your solution.   
+Your submission should include all your changing code.   
 
-Once you complete the assignment, you need to run the **build. sh** script. This script will build your solution automatically and generate the executable  file which called **svf-ex**.
+Once you complete the assignment, you need to run the **build. sh** script. This script will build your solution automatically and generate the executable  file which called **svf-ex**.  If your are working on Repl.it, you can click the run button to run the **build. sh** script to build the project. You can also run this script in the shell build your solution.
 ```
 ./build.sh
 ```
 
-Finally, you are requested to commit and push your code and the executable  file via the git command.
+Finally, you are requested to commit and push your code and all other changing files via the git command.
 ```
 git add <source code and the executable  file>
 git commit -m'<commit message>'
 git push
 ```
-*Note: It is important to submit the executable file. Otherwise, your submission will not be marked by the system.*
 
 After the submission, your work will be automatically marked by the system and you are able to check your mark at the assignment GitHub repository.
