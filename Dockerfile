@@ -23,5 +23,5 @@ RUN git clone https://github.com/SVF-tools/SVF-example.git
 RUN unzip master.zip
 WORKDIR /home/SVF-master
 RUN bash ./build.sh debug
-ENV PATH=/SVF-master/Release-build/bin:$PATH
+ENV PATH=/SVF-master/Debug-build/bin:$PATH
 RUN rm -rf /master.zip
