@@ -86,35 +86,35 @@ Select your pc system version then open the vscode editor.
 
 For further using tips and vs-code related resources, you can use the link - [Learn with VS Code](https://code.visualstudio.com/learn)
 
-![VS_Code_entry_window](~/SES-1B/pic/vs_entry_window.png)
+![VS_Code_entry_window]("https://github.com/charles32110/svfpic/vs_entry_window.png")
 
 ### 4. Download the docker extension on vscode
 
-![Press the Extension on tool bar](~/SES-1B/pic/extension1.jpeg)
+![Press the Extension on tool bar]("https://github.com/charles32110/svfpic/extension1.jpeg")
 
-![Install the Docker extension](~/SES-1B/pic/extension2.jpeg)
-
-
-![](https://github.com/charles32110/svfpic/dockerbuild.png)
-![ ](https://github.com/charles32110/svfpic/dockerbuild2.jpg)
-![ ](https://github.com/charles32110/svfpic/dockerbuild3.jpg)
-![ ](https://github.com/charles32110/svfpic/dockerbuild4.png)
-![](https://github.com/charles32110/svfpic/dockerbuild5.jpg)
+![Install the Docker extension]("https://github.com/charles32110/svfpic/extension2.jpeg")
 
 
-![](https://github.com/charles32110/svfpic/connect1.jpg)
-![](https://github.com/charles32110/svfpic/connect2.png)
-![](https://github.com/charles32110/svfpic/connect3.png)
-![](https://github.com/charles32110/svfpic/connect4.jpg)
-![](https://github.com/charles32110/svfpic/connect5.jpg)
-![](https://github.com/charles32110/svfpic/connect6.jpg)
-![](https://github.com/charles32110/svfpic/connect7.jpg)
+![]("https://github.com/charles32110/svfpic/dockerbuild.png")
+![ ]("https://github.com/charles32110/svfpic/dockerbuild2.jpg")
+![ ]("https://github.com/charles32110/svfpic/dockerbuild3.jpg")
+![ ]("https://github.com/charles32110/svfpic/dockerbuild4.png")
+![]("https://github.com/charles32110/svfpic/dockerbuild5.jpg")
 
 
-![](https://github.com/charles32110/svfpic/dockerdb1.jpg)
-![](https://github.com/charles32110/svfpic/dockerdb2.jpg)
-![](https://github.com/charles32110/svfpic/dockerdb3.jpg)
-![](https://github.com/charles32110/svfpic/dockerdb4.jpg)
+![]("https://github.com/charles32110/svfpic/connect1.jpg")
+![]("https://github.com/charles32110/svfpic/connect2.png")
+![](https://github.com/charles32110/svfpic/connect3.png")
+![]("https://github.com/charles32110/svfpic/connect4.jpg")
+![]("https://github.com/charles32110/svfpic/connect5.jpg")
+![]("https://github.com/charles32110/svfpic/connect6.jpg")
+![]("https://github.com/charles32110/svfpic/connect7.jpg")
+
+
+![]("https://github.com/charles32110/svfpic/dockerdb1.jpg")
+![]("https://github.com/charles32110/svfpic/dockerdb2.jpg")
+![]("https://github.com/charles32110/svfpic/dockerdb3.jpg")
+![]("https://github.com/charles32110/svfpic/dockerdb4.jpg")
 
 
 
@@ -129,7 +129,3 @@ compile_commands.json
 }
 ]
 ```
-
-
-
-
