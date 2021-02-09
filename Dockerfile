@@ -25,7 +25,6 @@ WORKDIR /home/SVF-master
 RUN bash ./build.sh debug
 RUN echo "Building SVF-example"
 # ENV PATH=/SVF-master/Debug-build/bin:$PATH
-ENV LLVM_DIR=/home/SVF-master/llvm-10.0.0.obj
 ENV SVF_DIR=/home/SVF-master
 WORKDIR /home/SVF-example
 RUN cmake -DCMAKE_BUILD_TYPE=Debug .
