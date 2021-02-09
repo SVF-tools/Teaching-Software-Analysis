@@ -18,10 +18,16 @@ RUN apt-get install -y $build_deps $lib_deps
 RUN echo "Downloading LLVM and building SVF"
 WORKDIR /home
 RUN wget "https://github.com/SVF-tools/SVF/archive/master.zip"
-RUN git clone https://github.com/SVF-tools/SVF-example.git  
+RUN git clone "https://github.com/SVF-tools/SVF-example.git"
 # should be changed to your own github classroom
 RUN unzip master.zip
 WORKDIR /home/SVF-master
 RUN bash ./build.sh debug
-ENV PATH=/SVF-master/Release-build/bin:$PATH
+RUN echo "Building SVF-example"
+# ENV PATH=/SVF-master/Debug-build/bin:$PATH
+ENV LLVM_DIR=/home/SVF-master/llvm-10.0.0.obj
+ENV SVF_DIR=/home/SVF-master
+WORKDIR /home/SVF-example
+RUN cmake -DCMAKE_BUILD_TYPE=Debug .
+RUN make
 RUN rm -rf /master.zip
