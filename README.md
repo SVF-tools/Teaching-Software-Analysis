@@ -1,4 +1,4 @@
-# SVF-example VScode implementations
+# Teaching SVF using VScode as its IDE
 
 ## Table of Content
 1. Installations
