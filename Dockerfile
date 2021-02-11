@@ -18,13 +18,13 @@ RUN apt-get install -y $build_deps $lib_deps
 RUN echo "Downloading LLVM and building SVF"
 WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/SVF.git"
-RUN git clone "https://github.com/SVF-tools/SVF-example.git"
+RUN git clone "https://github.com/SVF-tools/SVF-Teaching.git"
 WORKDIR ${HOME}/SVF
-RUN echo "Building SVF-example"
+RUN echo "Building SVF ..."
 RUN bash ./build.sh debug
 # ENV PATH=/SVF-master/Debug-build/bin:$PATH
 ENV SVF_DIR=${HOME}/SVF
-WORKDIR ${HOME}/SVF-example
-RUN echo "Building SVF-example"
+WORKDIR ${HOME}/SVF-Teaching
+RUN echo "Building SVF-Teaching example ..."
 RUN cmake -DCMAKE_BUILD_TYPE=Debug .
 RUN make
