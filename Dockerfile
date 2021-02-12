@@ -6,6 +6,9 @@ RUN set -e
 # Define LLVM version.
 ENV llvm_version=10.0.0
 
+# Define home directory
+ENV HOME=/home/SVF-tools
+
 # Define dependencies.
 ENV lib_deps="make g++ git zlib1g-dev libncurses5-dev libssl-dev libpcre2-dev zip vim"
 ENV build_deps="wget xz-utils cmake python git gdb"
