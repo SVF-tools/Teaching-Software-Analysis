@@ -22,7 +22,7 @@ RUN git clone "https://github.com/SVF-tools/SVF.git"
 RUN git clone "https://github.com/SVF-tools/SVF-Teaching.git"
 WORKDIR ${HOME}/SVF
 RUN echo "Building SVF ..."
-RUN bash ./build.sh debug
+RUN bash ./build.sh 
 # ENV PATH=/SVF-master/Debug-build/bin:$PATH
 ENV SVF_DIR=${HOME}/SVF
 ENV LLVM_DIR=${HOME}/SVF/llvm-$llvm_version.obj
