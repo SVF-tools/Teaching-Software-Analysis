@@ -31,6 +31,7 @@ ENV SVF_DIR=${HOME}/SVF
 ENV LLVM_DIR=${HOME}/SVF/llvm-$llvm_version.obj
 
 # Fetch and build SVF-Teaching example.
+WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/SVF-Teaching.git"
 WORKDIR ${HOME}/SVF-Teaching
 RUN echo "Building SVF-Teaching example ..."
