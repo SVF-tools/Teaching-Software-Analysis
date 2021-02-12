@@ -5,7 +5,7 @@ RUN set -e
 
 # Define LLVM version.
 ENV llvm_version=10.0.0
-ENV HOME /home/svf-tools
+ENV HOME=/home/svf-tools
 
 # Define dependencies.
 ENV lib_deps="make g++ git zlib1g-dev libncurses5-dev libssl-dev libpcre2-dev zip vim"
