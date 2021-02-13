@@ -23,10 +23,11 @@ WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/SVF.git"
 WORKDIR ${HOME}/SVF
 RUN echo "Building SVF ..."
-RUN bash ./build.sh
+ENV PATH=${HOME}/SVF/Debug-build/bin:$PATH
+RUN bash ./build.sh debug
 
 # Export SVF and llvm paths
-ENV PATH=${HOME}/SVF/Release-build/bin:$PATH
+
 ENV SVF_DIR=${HOME}/SVF
 ENV LLVM_DIR=${HOME}/SVF/llvm-$llvm_version.obj
 
