@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/svf-ex",
+            "program": "${workspaceFolder}/bin/svf-ex", //may change to your working assignment target e.g. Assignment-1: graph
             "args": [], // give the test bc file
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
