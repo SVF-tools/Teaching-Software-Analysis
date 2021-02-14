@@ -1,8 +1,5 @@
 #!/bin/bash
-source env.sh
-mkdir build
-cd build
-cmake ..
+npm i --silent svf-lib --prefix ${HOME}
+source ./env.sh
+cmake -DCMAKE_BUILD_TYPE=Debug .
 make
-cd ..
-mv ./build/bin/svf-ex ./
