@@ -1,3 +1,3 @@
-add_executable(graph Graph.cpp)
-set_target_properties( graph PROPERTIES
+add_executable(assign-1 Assignment-1.cpp)
+set_target_properties( assign-1 PROPERTIES
                        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin )
