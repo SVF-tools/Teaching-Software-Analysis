@@ -8,7 +8,7 @@ using namespace std;
 /// TODO: print each path once this method is called, and
 /// add each path as a string into std::set<std::string> paths
 /// Print the path in the format "START: 1->2->4->5->END", where -> indicate an edge connects two node IDs
-void printPath(std::vector<const Node *> &path)
+void GraphTraversal::printPath(std::vector<const Node *> &path)
 {
 
 };
