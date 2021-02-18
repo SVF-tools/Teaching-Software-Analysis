@@ -3,8 +3,8 @@
 PROJECTHOME=$(pwd)
 sysOS=`uname -s`
 LLVMHome="llvm-10.0.0.obj"
-install_path=`npm root`
-export LLVM_DIR=$HOME/$LLVMHome
+install_path=/home/SVF-tools
+export LLVM_DIR=$install_path/SVF/$LLVMHome
 export PATH=$LLVM_DIR/bin:$PATH
 export PATH=$PROJECTHOME/bin:$PATH
 if [[ $sysOS == "Darwin" ]]
