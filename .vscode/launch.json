@@ -1,15 +1,13 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/svf-ex", //may change to your working assignment target e.g. Assignment-1: graph
-            "args": [], // give the test bc file
+            // Please change to executable of your working assignment e.g. Assignment-1: assign-1
+            "program": "${workspaceFolder}/bin/assign-1",
+            "args": [], // may input the test llvm bc file
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
