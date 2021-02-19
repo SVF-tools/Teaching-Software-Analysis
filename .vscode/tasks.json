@@ -3,7 +3,8 @@
         {
             "label": "C/C++: cpp build active file",
             "type": "shell",
-            "command": "cmake -g -DCMAKE_BUILD_TYPE=Debug . && make",
+            // if you want to run locally without using docker container, please change LLVM_DIR & SVF_DIR 
+            "command": "cmake -g -DCMAKE_BUILD_TYPE=Debug -DLLVM_DIR=/home/SVF-tools/SVF/llvm-10.0.0.obj -DSVF_DIR=/home/SVF_tools/SVF . && make",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
