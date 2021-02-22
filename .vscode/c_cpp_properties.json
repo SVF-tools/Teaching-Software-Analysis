@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "/home/SVF-tools/SVF/**"
+                "/home/SVF-tools/SVF/**",
+                "${workspaceFolder}"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
