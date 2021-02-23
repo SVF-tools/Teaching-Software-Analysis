@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             // Please change to executable of your working assignment e.g. Assignment-1: assign-1
-            "program": "${workspaceFolder}/bin/assign-1",
+            "program": "${workspaceFolder}/bin/hello",
             "args": [], // may input the test llvm bc file
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
