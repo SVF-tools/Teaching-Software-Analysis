@@ -58,5 +58,5 @@ set(SVF_HEADER "${SVF_DIR}/include")
 include_directories(${SVF_HEADER})
 
 
-
-add_subdirectory(Assignment-1)
+#In each Assignment, please change the directory file name
+add_subdirectory(HelloWorld)
