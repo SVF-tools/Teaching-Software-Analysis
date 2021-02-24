@@ -19,7 +19,7 @@ void Test1()
     SVF::PAGBuilder builder;
     SVF::PAG *pag = builder.build(svfModule);
     SVF::ICFG *icfg = pag->getICFG();
-    icfg->dump("icfg_test1");
+    icfg->dump("/home/SVF-tools/SVF-Teaching/Assignment-2/testcase/dot/icfg_test1");
     std::vector<const SVF::ICFGNode *> path;
     std::set<const SVF::ICFGNode *> visited;
     ICFGTraversal *gt = new ICFGTraversal(pag);
@@ -48,7 +48,7 @@ void Test2()
     SVF::PAGBuilder builder;
     SVF::PAG *pag = builder.build(svfModule);
     SVF::ICFG *icfg = pag->getICFG();
-    icfg->dump("icfg_test2");
+    icfg->dump(/home/SVF-tools/SVF-Teaching/Assignment-2/testcase/dot/icfg_test2");
     std::vector<const SVF::ICFGNode *> path;
     std::set<const SVF::ICFGNode *> visited;
     ICFGTraversal *gt = new ICFGTraversal(pag);
