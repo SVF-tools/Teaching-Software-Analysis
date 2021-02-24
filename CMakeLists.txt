@@ -60,3 +60,7 @@ include_directories(${SVF_HEADER})
 
 #In each Assignment, please change the directory file name
 add_subdirectory(HelloWorld)
+add_subdirectory(Assignment-1)
+add_subdirectory(Assignment-2)
+add_subdirectory(Assignment-3)
+add_subdirectory(Assignment-4)
