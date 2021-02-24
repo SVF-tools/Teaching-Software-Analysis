@@ -1,6 +1,6 @@
 //===- SVF-Teaching Assignment 2-------------------------------------//
 //
-//                     SVF: Static Value-Flow Analysis
+//     SVF: Static Value-Flow Analysis Framework for Source Code
 //
 // Copyright (C) <2013->
 //
@@ -19,7 +19,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 //===-----------------------------------------------------------------------===//
-
 /*
  // SVF-Teaching Assignment 2 : Source Sink ICFG DFS Traversal
  //
@@ -43,7 +42,7 @@ class ICFGTraversal
 public:
     std::set<std::string> paths;
     ICFGTraversal(SVF::PAG *p) : pag(p) {}
-    
+
     std::string printPathId(std::vector<const SVF::ICFGNode *> &path)
     {
         std::string singlePath = "START:";
@@ -62,7 +61,6 @@ public:
 
     void DFS(std::set<const SVF::ICFGNode *> &visited, std::vector<const SVF::ICFGNode *> &path, const SVF::ICFGNode *src, const SVF::ICFGNode *dst);
 
-    // void DFS_cxt(set<const ICFGNode *> &visited, vector<const ICFGNode *> &path,unordered_map<NodeID,vector<CallSiteID>>&ctx, const ICFGNode *src, const ICFGNode *dst);
 
 private:
     std::set<const SVF::CallBlockNode *> sources;
