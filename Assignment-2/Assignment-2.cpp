@@ -31,37 +31,15 @@
 using namespace SVF;
 using namespace std;
 
+/// TODO: print each path once this method is called, and
+/// add each path as a string into std::set<std::string> paths
+/// Print the path in the format "START: 1->2->4->5->END", where -> indicate an ICFGEdge connects two ICFGNode IDs
+void ICFGTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
 
-
-std::set<const CallBlockNode *> &ICFGTraversal::identifySources()
-{
-    for (const CallBlockNode *cs : pag->getCallSiteSet())
-    {
-        const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
-        if (fun->getName() == "src")
-        {
-            sources.insert(cs);
-        }
-    }
-    return sources;
 }
 
 
-std::set<const CallBlockNode *> &ICFGTraversal::identifySinks()
-{
-    for (const CallBlockNode *cs : pag->getCallSiteSet())
-    {
-        const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
-        if (fun->getName() == "sink")
-        {
-            sinks.insert(cs);
-        }
-    }
-    return sinks;
-}
-
-
-//code from here
+/// TODO: Implement your depth first search here to traversal each program path (once for any loop) from src to dst
 void ICFGTraversal::DFS(set<const ICFGNode *> &visited, vector<const ICFGNode *> &path, const ICFGNode *src, const ICFGNode *dst)
 {
     

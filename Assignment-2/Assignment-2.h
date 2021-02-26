@@ -26,46 +26,61 @@
  */
 #ifndef ASSIGNMENT_2_H_
 #define ASSIGNMENT_2_H_
-#include <iostream>
-#include <vector>
+
 #include "SVF-FE/LLVMUtil.h"
-#include "SVF-FE/LLVMModule.h"
-#include "Util/SVFUtil.h"
 #include "SVF-FE/PAGBuilder.h"
-#include "SVF-FE/ICFGBuilder.h"
-#include "Graphs/PAG.h"
-#include "Graphs/ICFG.h"
+#include "Assignment-2.h"
+using namespace SVF;
 
 class ICFGTraversal
 {
 
 public:
-    std::set<std::string> paths;
-    ICFGTraversal(SVF::PAG *p) : pag(p) {}
 
-    std::string printPathId(std::vector<const SVF::ICFGNode *> &path)
+    ICFGTraversal(PAG *p) : pag(p) {}
+
+    /// TODO: to be implemented
+    void printICFGPath(std::vector<const ICFGNode *> &path);
+
+    /// TODO: to be implemented
+    void DFS(std::set<const ICFGNode *> &visited, std::vector<const ICFGNode *> &path, const ICFGNode *src, const ICFGNode *dst);
+
+    // Identify source nodes on ICFG (i.e., call instruction with its callee function named 'src')
+    std::set<const CallBlockNode *> &identifySources()
     {
-        std::string singlePath = "START:";
-        for (const SVF::ICFGNode *node : path)
+        for (const CallBlockNode *cs : pag->getCallSiteSet())
         {
-            singlePath += std::to_string(node->getId());
-            singlePath += "->";
+            const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
+            if (fun->getName() == "src")
+            {
+                sources.insert(cs);
+            }
         }
-        singlePath += "END";
-        return singlePath;
+        return sources;
     }
 
-    std::set<const SVF::CallBlockNode *> &identifySources();
-
-    std::set<const SVF::CallBlockNode *> &identifySinks();
-
-    void DFS(std::set<const SVF::ICFGNode *> &visited, std::vector<const SVF::ICFGNode *> &path, const SVF::ICFGNode *src, const SVF::ICFGNode *dst);
-
+    // Identify sink nodes on ICFG (i.e., call instruction with its callee function named 'sink')
+    std::set<const CallBlockNode *> &identifySinks()
+    {
+        for (const CallBlockNode *cs : pag->getCallSiteSet())
+        {
+            const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
+            if (fun->getName() == "sink")
+            {
+                sinks.insert(cs);
+            }
+        }
+        return sinks;
+    }
+    std::set<std::string>& getPaths(){
+        return paths;
+    }
 
 private:
-    std::set<const SVF::CallBlockNode *> sources;
-    std::set<const SVF::CallBlockNode *> sinks;
-    SVF::PAG *pag;
+    std::set<const CallBlockNode *> sources;
+    std::set<const CallBlockNode *> sinks;
+    std::set<std::string> paths;
+    PAG *pag;
 };
 
 #endif
