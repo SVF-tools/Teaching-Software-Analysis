@@ -28,37 +28,77 @@
 
 #ifndef ASSIGNMENT_1_H_
 #define ASSIGNMENT_1_H_
-#include <set>
-#include <vector>
-#include <string>
+#include <iostream>
+//declare
 class Node;
 class Edge;
+
 class Node
 {
-public:
+private:
     int nodeID;
-    std::set<const Edge *> outEdges;
-    Node(int i) : nodeID(i){};
-};
-class Edge
-{
+    std::set<const Edge *> outEdges; // outgoing edges of this node
+
 public:
-    Node *src;
-    Node *dst;
-    Edge(Node *s, Node *d) : src(s), dst(d){};
-};
-class Graph
-{
-public:
-    std::set<Node *> nodes;
-    Graph(){};
-    void addNode(Node *n);
+    // constructor
+    Node(int i) { 
+        nodeID = i; 
+    }
+
+    // Get the private attribute nodeID
+    int getNodeID() const { 
+        return nodeID; 
+    }
+
+    // Get the private attribute outEdges 
+    std::set<const Edge *> getOutEdges() const { 
+        return outEdges; 
+    }
+
+    // Add an edge into outEdges
+    void addOutEdge(const Edge *edge) { 
+        outEdges.insert(edge); 
+    }
 };
 
-void Graph::addNode(Node *n)
+class Edge
 {
-    nodes.insert(n);
-}
+private:
+    Node *src;  // source node of the edge
+    Node *dst;  // target node of the edge
+
+public:
+    // Constructor
+    Edge(Node *s, Node *d) : src(s), dst(d){
+    }
+    // Get the source node
+    Node *getSrc() const { 
+        return src; 
+    }
+
+    // Get the target node
+    Node *getDst() const { 
+        return dst; 
+    }
+};
+
+class Graph
+{
+private:
+    std::set<const Node *> nodes;   // a set of nodes on the graph
+
+public:
+    Graph(){};
+    // Get all the nodes of the graph
+    std::set<const Node *> &getNodes() { 
+        return nodes; 
+    }
+    // Add a node into the graph
+    void addNode(const Node *node) { 
+        nodes.insert(node);
+    }
+};
+
 
 class GraphTraversal
 {
@@ -67,17 +107,21 @@ public:
     GraphTraversal(){};
     // Destructor
     ~GraphTraversal(){};
-    std::set<std::string> paths;
 
     /// To be implemented
     void printPath(std::vector<const Node *> &path);
 
     /// To be implemented
     void DFS(std::set<const Node *> &visited, std::vector<const Node *> &path, const Node *src, const Node *dst);
+
+    // Retrieve all paths (a set of strings) during graph traversal
+    std::set<std::string>& getPaths(){
+        return paths;
+    } 
+
+private:
+    std::set<std::string> paths;
 };
-// //declare function
-// void dfs(set<const Node*>& visited, vector<const Node*>& path, const Node *src,const Node *dst);
-// //print vector of path to string format of answer
-// void printPath(vector<const Node*>& path);
 
 #endif
+

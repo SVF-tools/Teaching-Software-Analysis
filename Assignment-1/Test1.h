@@ -29,12 +29,14 @@
 #ifndef TEST_1_H_
 #define TEST_1_H_
 #include "Assignment-1.h"
-#include<cassert>
+#include <assert.h>
 //test
 
 void Test1()
 {
   /*
+
+
       1
      /  \ 
     2   3
@@ -54,14 +56,15 @@ void Test1()
   // init edges
   Edge *edge1 = new Edge(node1, node2);
   Edge *edge2 = new Edge(node1, node3);
-  node1->outEdges.insert(edge1);
-  node1->outEdges.insert(edge2);
+  node1->addOutEdge(edge1);
+  node1->addOutEdge(edge2);
   Edge *edge3 = new Edge(node2, node4);
   Edge *edge4 = new Edge(node3, node4);
-  node2->outEdges.insert(edge3);
-  node3->outEdges.insert(edge4);
+  node2->addOutEdge(edge3);
+  node3->addOutEdge(edge4);
   Edge *edge5 = new Edge(node4, node5);
-  node4->outEdges.insert(edge5);
+  node4->addOutEdge(edge5);
+
   // init Graph
   Graph *g = new Graph();
   g->addNode(node1);
@@ -75,7 +78,7 @@ void Test1()
   std::vector<const Node *> path;
   GraphTraversal *dfs = new GraphTraversal();
   dfs->DFS(visited, path, node1, node5);
-  assert((dfs->paths == expected_answer) && "Test case 1 failed!");
+  assert(dfs->getPaths() == expected_answer && "Test case 1 failed!");
   std::cout << "Test case 1 passed!\n";
 }
 
