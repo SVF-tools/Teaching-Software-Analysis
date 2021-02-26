@@ -1,6 +1,6 @@
 //===- SVF-Teaching Assignment 2-------------------------------------//
 //
-//                     SVF: Static Value-Flow Analysis
+//     SVF: Static Value-Flow Analysis Framework for Source Code
 //
 // Copyright (C) <2013->
 //
@@ -19,7 +19,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 //===-----------------------------------------------------------------------===//
-
 /*
  // SVF-Teaching Assignment 2 : Source Sink ICFG DFS Traversal
  //
