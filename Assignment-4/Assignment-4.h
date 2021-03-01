@@ -30,7 +30,7 @@
 #include "Assignment-2.h"
 #include "Assignment-3.h"
 
-class TaintGraphTraversal : ICFGTraversal{
+class TaintGraphTraversal : public ICFGTraversal{
 
 private:
 AndersenPTA* ander;
