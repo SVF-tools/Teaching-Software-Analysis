@@ -30,7 +30,6 @@
 #include "SVF-FE/PAGBuilder.h"
 #include "WPA/Andersen.h"
 #include "Assignment-3.h"
-#include "Test3.h"
 using namespace SVF;
 using namespace llvm;
 using namespace std;
@@ -56,10 +55,4 @@ void AndersenPTA::processAllAddr(){
 	    /// Implement your code here:
         }
     }
-}
-
-int main(int argc, char ** argv) {
-
-    Test();
-    return 0;
 }

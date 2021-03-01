@@ -25,8 +25,9 @@
  //
  // 
  */
-#ifndef TEST_3_H_
-#define TEST_3_H_
+
+#include "Assignment-3.h"
+
 #include "SVF-FE/LLVMUtil.h"
 #include "SVF-FE/PAGBuilder.h"
 #include "WPA/Andersen.h"
@@ -72,4 +73,9 @@ void Test()
     Test2();
 }
 
-#endif
+
+int main()
+{
+    Test();
+    return 0;
+}

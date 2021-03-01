@@ -46,7 +46,7 @@ public:
     void DFS(std::set<const ICFGNode *> &visited, std::vector<const ICFGNode *> &path, const ICFGNode *src, const ICFGNode *dst);
 
     // Identify source nodes on ICFG (i.e., call instruction with its callee function named 'src')
-    std::set<const CallBlockNode *> &identifySources()
+    virtual std::set<const CallBlockNode *> &identifySources()
     {
         for (const CallBlockNode *cs : pag->getCallSiteSet())
         {
@@ -60,7 +60,7 @@ public:
     }
 
     // Identify sink nodes on ICFG (i.e., call instruction with its callee function named 'sink')
-    std::set<const CallBlockNode *> &identifySinks()
+    virtual std::set<const CallBlockNode *> &identifySinks()
     {
         for (const CallBlockNode *cs : pag->getCallSiteSet())
         {

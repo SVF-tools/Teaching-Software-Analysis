@@ -27,7 +27,6 @@
 
 #include <set>
 #include "Assignment-2.h"
-#include "Test2.h"
 using namespace SVF;
 using namespace std;
 
@@ -43,11 +42,4 @@ void ICFGTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
 void ICFGTraversal::DFS(set<const ICFGNode *> &visited, vector<const ICFGNode *> &path, const ICFGNode *src, const ICFGNode *dst)
 {
     
-}
-
-
-int main()
-{
-    Test();
-    return 0;
 }
