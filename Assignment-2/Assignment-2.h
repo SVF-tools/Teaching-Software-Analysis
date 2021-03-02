@@ -76,7 +76,7 @@ public:
         return paths;
     }
 
-private:
+protected:
     std::set<const CallBlockNode *> sources;
     std::set<const CallBlockNode *> sinks;
     std::set<std::string> paths;
