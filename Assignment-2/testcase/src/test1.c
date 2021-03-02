@@ -1,6 +1,6 @@
 #include<stdbool.h>
 void sink();
-void src(int *s){
+void source(int *s){
 	sink();
 };
 void sink(){
@@ -9,7 +9,7 @@ void sink(){
 int main(){
         int a = 1;
         while ( a <=1){
-                src(&a);
+                source(&a);
                 a++;
         }
         return 0;
