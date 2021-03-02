@@ -33,8 +33,11 @@
 class TaintGraphTraversal : public ICFGTraversal{
 
 private:
-AndersenPTA* ander;
+    AndersenPTA* ander;
 
+    // source & sink high frequency words
+    std::set<string> checker_source_api {"source", "getenv", "read", "getchar"};
+    std::set<string> checker_sink_api {"sink", "execl", "execv", "execp"};  
 public:
     TaintGraphTraversal(PAG* pag, AndersenPTA* pta): ICFGTraversal(pag), ander(pta) {
 
