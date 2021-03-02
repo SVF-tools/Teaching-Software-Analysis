@@ -1,13 +1,13 @@
 #include<stdbool.h>
-void src(){
+void source(){
 };
 void sink(){
 };
 
 int main(){
         int a = 1;
-        while ( a <=1){
-                src();
+        while ( a <= 1 ){
+                source();
                 a++;
         }
         sink();

@@ -51,7 +51,7 @@ public:
         for (const CallBlockNode *cs : pag->getCallSiteSet())
         {
             const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
-            if (fun->getName() == "src")
+            if (fun->getName() == "source")
             {
                 sources.insert(cs);
             }

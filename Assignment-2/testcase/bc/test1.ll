@@ -1,10 +1,10 @@
-; ModuleID = 'testcase/src/test1.c'
-source_filename = "testcase/src/test1.c"
+; ModuleID = 'Assignment-2/testcase/src/test1.c'
+source_filename = "Assignment-2/testcase/src/test1.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local void @src(i32* %s) #0 {
+define dso_local void @source(i32* %s) #0 {
 entry:
   %s.addr = alloca i32*, align 8
   store i32* %s, i32** %s.addr, align 8
@@ -33,7 +33,7 @@ while.cond:                                       ; preds = %while.body, %entry
   br i1 %cmp, label %while.body, label %while.end
 
 while.body:                                       ; preds = %while.cond
-  call void @src(i32* %a)
+  call void @source(i32* %a)
   %1 = load i32, i32* %a, align 4
   %inc = add nsw i32 %1, 1
   store i32 %inc, i32* %a, align 4
