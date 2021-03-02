@@ -31,7 +31,7 @@
 void Test1()
 {
 
-    std::vector<std::string> moduleNameVec = {"/home/SVF/SVF-teaching/Assignment-2/testcase/test3.ll"};
+    std::vector<std::string> moduleNameVec = {"./Assignment-2/testcase/bc/test1.ll"};
 
     SVFModule *svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
 
@@ -60,7 +60,7 @@ void Test1()
 void Test2()
 {
     //    Your current workingspace dir}/Assignment-2/testCase/
-    std::vector<std::string> moduleNameVec = {"/home/SVF/SVF-teaching/Assignment-2/testcase/test2.ll"};
+    std::vector<std::string> moduleNameVec = {"./Assignment-2/testcase/bc/test2.ll"};
 
     SVFModule *svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
 
