@@ -10,12 +10,16 @@ ENV llvm_version=10.0.0
 ENV HOME=/home/SVF-tools
 
 # Define dependencies.
-ENV lib_deps="make g++ git zlib1g-dev libncurses5-dev libssl-dev libpcre2-dev zip vim"
+ENV lib_deps="make g++-8 gcc-8 git zlib1g-dev libncurses5-dev libssl-dev libpcre2-dev zip vim"
 ENV build_deps="wget xz-utils cmake python git gdb"
 
 # Fetch dependencies.
 RUN apt-get update
 RUN apt-get install -y $build_deps $lib_deps
+# add glibc
+RUN apt install glibc-source
+WORKDIR /usr/src/glibc 
+RUN tar xvf glibc-2.27.tar.xz 
 
 # Fetch and build SVF source.
 RUN echo "Downloading LLVM and building SVF to " ${HOME}
