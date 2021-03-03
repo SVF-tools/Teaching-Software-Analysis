@@ -19,6 +19,9 @@
                     "ignoreFailures": true
                 }
             ],
+            "sourceFileMap": {
+                "/build/glibc-S9d2JN": "/usr/src/glibc"
+            },
             "preLaunchTask": "C/C++: cpp build active file"
         }
     ]
