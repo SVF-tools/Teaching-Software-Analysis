@@ -1,0 +1,2 @@
+source -> { src set getname update getchar }
+sink -> { mysql_query system require chmod }

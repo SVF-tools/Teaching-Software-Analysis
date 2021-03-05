@@ -21,53 +21,50 @@
 //===-----------------------------------------------------------------------===//
 
 /*
- // SVF-Teaching Assignment 4: Taint Analysis
+ // SVF-Teaching Assignment 4: Information Flow Tracking
  //
  // 
  */
 
 
 #include "Assignment-4.h"
-
+#include <fstream>
+#include <sstream>
+#include <typeinfo>
 using namespace SVF;
 using namespace llvm;
 using namespace std;
-//parse the input .bc file 
-static llvm::cl::opt<std::string> InputFilename(cl::Positional,
-        llvm::cl::desc("<input bitcode>"), llvm::cl::init("-"));
+
+//parse and get the SrcSnk.txt filename
+static llvm::cl::opt<string> SrcSnk("configSrcSnk", llvm::cl::init(""),
+                                         llvm::cl::desc("Load Source && Sink API from file"));
 
 /// Checking alias of the variables at source and sink.
 bool TaintGraphTraversal::aliasCheck(const CallBlockNode *src, const CallBlockNode *snk)
 {
-    const RetBlockNode* ret = src->getRetBlockNode();
-    const PAGNode* actualRetPAGNode = ret->getActualRet();
-    for(const PAGNode* param : snk->getActualParms()){
-        if(ander->alias(actualRetPAGNode->getId(), param->getId()))
-            return true;
-    }
-    return false;
+    
 }
 
-// Implement your code here to collect sources
+// Implement your code here to collect sources function name referred from checker_source_api
 std::set<const CallBlockNode *>& TaintGraphTraversal::identifySources(){
-    return ICFGTraversal::identifySources();
+    
 }
 
-// Implement your code here to collect sinks
+// Implement your code here to collect sinks function name referred from checker_sink_api
 std::set<const CallBlockNode *>& TaintGraphTraversal::identifySinks(){
-    return ICFGTraversal::identifySinks();
+    
 }
 
 // Start taint checking. 
 // There is a tainted flow from p@source to q@sink 
 // if (1) alias(p,q)==true and (2) source reaches sink on ICFG.
 void TaintGraphTraversal::taintChecking(){
-    for(const CallBlockNode* src : identifySources()){
-        for(const CallBlockNode* snk : identifySinks()){
-            vector<const ICFGNode*> path;
-            set<const ICFGNode*> visited;
-            if(aliasCheck(src,snk))
-                DFS(visited,path,src,snk);
-        }
-    }
+    
+}
+// Parse a single line in the form of 
+//line 1: "src -> { api api api }"
+// line 2: "sink -> { api api api }" 
+// please refer to SrcSnk.txt
+void TaintGraphTraversal::readSrcSnkFormFile(const string& filename){
+
 }
