@@ -35,12 +35,12 @@ class TaintGraphTraversal : public ICFGTraversal{
 private:
     AndersenPTA* ander;
     // mapping a type to its corresponding APIs, e.g., source -> {getenv, ...}
-    std::map<const std::string, std::set<const char*> > APIS;
+    std::map<const std::string, std::set<std::string> > APIS;
 public:
     TaintGraphTraversal(PAG* pag, AndersenPTA* pta): ICFGTraversal(pag), ander(pta) {}
     
     // Can be used in adding elements to apis
-    void add_API(const std::string kind, const char* api) { 
+    void add_API(const std::string kind, const std::string api) { 
         APIS[kind].insert(api);
     }
 
