@@ -21,7 +21,7 @@
 //===-----------------------------------------------------------------------===//
 
 /*
- // SVF-Teaching Assignment 4: Taint Analysis
+ // SVF-Teaching Assignment 4: Information Flow Tracking
  //
  // 
  */
@@ -35,13 +35,19 @@ class TaintGraphTraversal : public ICFGTraversal{
 private:
     AndersenPTA* ander;
 
-    // source & sink high frequency words
-    std::set<string> checker_source_api {"source", "getenv", "read", "getchar"};
-    std::set<string> checker_sink_api {"sink", "execl", "execv", "execp"};  
-public:
-    TaintGraphTraversal(PAG* pag, AndersenPTA* pta): ICFGTraversal(pag), ander(pta) {
+    // default source and sink function name API if SrcSnk.txt is not added
+    std::set<const string> checker_source_api={"source"};
+    std::set<const string> checker_sink_api={"sink"};
 
-    }
+    // for allocating the new api from file
+    vector<std::set<const string>*> APIS = {&checker_source_api, &checker_sink_api};
+public:
+    TaintGraphTraversal(PAG* pag, AndersenPTA* pta): ICFGTraversal(pag), ander(pta) {}
+    
+    // Can be used in adding elements to apis
+    void add_API(const string& api, int index) { APIS[index]->insert(api);}
+
+    set<string> getICFGPaths(){ return paths;}
 
     bool aliasCheck(const CallBlockNode *src, const CallBlockNode *snk);
 
@@ -51,6 +57,9 @@ public:
     // Identify sink nodes on ICFG (i.e., call instruction with its callee function named 'sink')
     std::set<const CallBlockNode *>& identifySinks();
 
+    // Source and sink function name API read from SrcSnk.txt
+    void readSrcSnkFormFile(const string& filename);
+    
     void taintChecking();
 };
 
