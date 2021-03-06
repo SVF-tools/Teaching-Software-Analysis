@@ -32,16 +32,14 @@
 
 class TaintGraphTraversal : public ICFGTraversal{
 
-private:
-    AndersenPTA* ander;
-    // mapping a type to its corresponding APIs, e.g., source -> {getenv, ...}
-    std::map<const std::string, std::set<std::string> > APIS;
 public:
+    // mapping a type to its corresponding APIs, e.g., source -> {getenv, ...}
+    typedef std::map<int, std::set<std::string> > api_map ;
     TaintGraphTraversal(PAG* pag, AndersenPTA* pta): ICFGTraversal(pag), ander(pta) {}
     
     // Can be used in adding elements to apis
-    void add_API(const std::string kind, const std::string api) { 
-        APIS[kind].insert(api);
+    void add_API(int index, const std::string api) { 
+        APIS[index].insert(api);
     }
 
     set<string> getICFGPaths(){ return paths;}
@@ -58,6 +56,15 @@ public:
     void readSrcSnkFormFile(const string& filename);
     
     void taintChecking();
+
+private:
+    AndersenPTA* ander;
+
+    // default source and sink function name API if SrcSnk.txt is not added
+    std::set<std::string> checker_source_api {"source"};
+    std::set<std::string> checker_sink_api {"sink"};
+    
+    api_map APIS {{0,checker_source_api}, {1,checker_sink_api}};
 };
 
 #endif

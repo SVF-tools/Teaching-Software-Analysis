@@ -25,8 +25,6 @@
  //
  // 
  */
-
-
 #include "Assignment-4.h"
 #include <fstream>
 #include <sstream>
@@ -35,7 +33,8 @@ using namespace SVF;
 using namespace llvm;
 using namespace std;
 
-//parse and get the SrcSnk.txt filename
+//parse and get the SrcSnk.txt filename 
+// params for assign-4 test1.ll -configSrcSnk SrcSnk.txt 
 static llvm::cl::opt<string> SrcSnk("configSrcSnk", llvm::cl::init(""),
                                          llvm::cl::desc("Load Source && Sink API from file"));
 
@@ -52,19 +51,23 @@ bool TaintGraphTraversal::aliasCheck(const CallBlockNode *src, const CallBlockNo
 }
 
 // TODO: Implement your code here to collect sources function names read from checker_source_api
-std::set<const CallBlockNode *>& TaintGraphTraversal::identifySources(){
- 	return ICFGTraversal::identifySources();
+std::set<const CallBlockNode *>& TaintGraphTraversal::identifySources()
+{
+    return ICFGTraversal::identifySources();
 }
-
 // TODO: Implement your code here to collect sinks function names read from checker_sink_api
-std::set<const CallBlockNode *>& TaintGraphTraversal::identifySinks(){
- 	return ICFGTraversal::identifySinks();
+std::set<const CallBlockNode *>& TaintGraphTraversal::identifySinks()
+{
+    return ICFGTraversal::identifySinks();
 }
 
 // Start taint checking. 
 // There is a tainted flow from p@source to q@sink 
 // if (1) alias(p,q)==true and (2) source reaches sink on ICFG.
 void TaintGraphTraversal::taintChecking(){
+    if (!SrcSnk.empty())
+        // add Src Snk function name AIP from file
+        readSrcSnkFormFile(SrcSnk);
     for(const CallBlockNode* src : identifySources()){
         for(const CallBlockNode* snk : identifySinks()){
             vector<const ICFGNode*> path;
@@ -79,5 +82,5 @@ void TaintGraphTraversal::taintChecking(){
 // line 1: "source -> { api api api }"
 // line 2: "sink   -> { api api api }" 
 void TaintGraphTraversal::readSrcSnkFormFile(const string& filename){
-
+    
 }
