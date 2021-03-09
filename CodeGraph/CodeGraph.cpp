@@ -39,8 +39,7 @@ using namespace std;
 
 static llvm::cl::opt<std::string> InputFilename(cl::Positional,
         llvm::cl::desc("<input bitcode>"), llvm::cl::init("-"));
-static llvm::cl::opt<string> name("name", llvm::cl::init(""),
-                                         llvm::cl::desc("file name"));
+
 int main(int argc, char ** argv) {
 
     int arg_num = 0;
@@ -55,9 +54,9 @@ int main(int argc, char ** argv) {
     /// Build Program Assignment Graph (PAG)
     PAGBuilder builder;
     PAG *pag = builder.build(svfModule);
-    pag->dump("./CodeGraph/graph/"+ name + "_pag");
+    pag->dump(svfModule->getModuleIdentifier() + ".pag");
     /// ICFG
     ICFG *icfg = pag->getICFG();
-    icfg->dump("./CodeGraph/graph/"+ name + "_icfg");
+    icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
     return 0;
 }
