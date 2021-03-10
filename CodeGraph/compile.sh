@@ -6,5 +6,5 @@ if [ -n $1 ]; then
     opt -S -mem2reg $1.ll -o $1.ll
     ../bin/CodeGraph $1.ll
 else
-echo "please give the .ll file"
+echo "please give the .c file"
 fi
