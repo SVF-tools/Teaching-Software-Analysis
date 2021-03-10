@@ -50,7 +50,7 @@ void Test1()
             gt->DFS(visited, path, src, snk);
         }
     }
-    std::set<std::string> expected = {"START:20->1->2->3->4->END"};
+    std::set<std::string> expected = {"START: 20->1->2->3->4->END"};
     assert(expected == gt->getPaths());
     LLVMModuleSet::releaseLLVMModuleSet();
     PAG::releasePAG();
@@ -79,7 +79,7 @@ void Test2()
             gt->DFS(visited, path, src, snk);
         }
     }
-    std::set<std::string> expected = {"START:16->1->2->3->17->20->22->24->25->13->14->15->18->END", "START:16->17->20->22->24->25->13->14->15->18->END"};
+    std::set<std::string> expected = {"START: 16->1->2->3->17->20->22->24->25->13->14->15->18->END", "START: 16->17->20->22->24->25->13->14->15->18->END"};
     assert(expected == gt->getPaths());
     LLVMModuleSet::releaseLLVMModuleSet();
     PAG::releasePAG();
