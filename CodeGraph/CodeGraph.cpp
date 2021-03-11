@@ -60,18 +60,27 @@ int main(int argc, char ** argv) {
     ICFG *icfg = pag->getICFG();
     //dump icfg
     icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
-    // iterate each PAGNode on graph
-    for(PAG::iterator p = pag->begin(); p != pag->end();p++)
-    {
-        PAGNode *pN = p->second;
-        // SVFUtil::outs() << pN->toString() << "\n";
-    }
-    // iterate each ICFGNode on graph
+
+        // iterate each ICFGNode on ICFG
     for(ICFG::iterator i = icfg->begin(); i != icfg->end(); i++)
     {
-        ICFGNode *iN = i->second;
-        // SVFUtil::outs() << iN->toString() << "\n";
+        ICFGNode *n = i->second;
+        // SVFUtil::outs() << n->toString() << "\n";
+        // for(ICFGEdge* edge : n->getOutEdges()){
+        //     SVFUtil::outs() << edge->toString() << "\n";
+        // }
     }
+
+    // iterate each PAGNode on PAG
+    for(PAG::iterator p = pag->begin(); p != pag->end();p++)
+    {
+        PAGNode *n = p->second;
+        // SVFUtil::outs() << n->toString() << "\n";
+        // for(PAGEdge* edge : n->getOutEdges()){
+        //     SVFUtil::outs() << edge->toString() << "\n";
+        // }
+    }
+
 
     return 0;
 }
