@@ -54,9 +54,24 @@ int main(int argc, char ** argv) {
     /// Build Program Assignment Graph (PAG)
     PAGBuilder builder;
     PAG *pag = builder.build(svfModule);
+    //dump pag
     pag->dump(svfModule->getModuleIdentifier() + ".pag");
     /// ICFG
     ICFG *icfg = pag->getICFG();
+    //dump icfg
     icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
+    // iterate each PAGNode on graph
+    for(PAG::iterator p = pag->begin(); p != pag->end();p++)
+    {
+        PAGNode *pN = p->second;
+        // SVFUtil::outs() << pN->toString() << "\n";
+    }
+    // iterate each ICFGNode on graph
+    for(ICFG::iterator i = icfg->begin(); i != icfg->end(); i++)
+    {
+        ICFGNode *iN = i->second;
+        // SVFUtil::outs() << iN->toString() << "\n";
+    }
+
     return 0;
 }
