@@ -42,13 +42,14 @@ void Test1()
     ICFG *icfg = pag->getICFG();
     icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
     std::vector<const ICFGNode *> path;
+    std::stack<const Instruction *>callstack;
     std::set<const ICFGNode *> visited;
     ICFGTraversal *gt = new ICFGTraversal(pag);
     for (const CallBlockNode *src : gt->identifySources())
     {
         for (const CallBlockNode *snk : gt->identifySinks())
         {
-            gt->DFS(visited, path, src, snk);
+            gt->DFS(visited, path, callstack, src, snk);
         }
     }
     std::set<std::string> expected = {"START: 20->1->2->3->4->END"};
