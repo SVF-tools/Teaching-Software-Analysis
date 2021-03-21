@@ -26,6 +26,7 @@
  // 
  */
 
+#include <iostream>
 #include "Assignment-2.h"
 
 void Test1()
@@ -39,19 +40,21 @@ void Test1()
     PAGBuilder builder;
     PAG *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
-    icfg->dump("icfg_test1");
+    icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
     std::vector<const ICFGNode *> path;
+    std::stack<const Instruction *>callstack;
     std::set<const ICFGNode *> visited;
     ICFGTraversal *gt = new ICFGTraversal(pag);
     for (const CallBlockNode *src : gt->identifySources())
     {
         for (const CallBlockNode *snk : gt->identifySinks())
         {
-            gt->DFS(visited, path, src, snk);
+            gt->DFS(visited, path, callstack, src, snk);
         }
     }
     std::set<std::string> expected = {"START: 20->1->2->3->4->END"};
-    assert(expected == gt->getPaths());
+    assert(expected == gt->getPaths() && "test1 failed!");
+    std::cout << "test1 passed!" << "\n";
     LLVMModuleSet::releaseLLVMModuleSet();
     PAG::releasePAG();
     delete gt;
@@ -68,30 +71,30 @@ void Test2()
     PAGBuilder builder;
     PAG *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
-    icfg->dump("icfg_test2");
+    icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
     std::vector<const ICFGNode *> path;
     std::set<const ICFGNode *> visited;
+    std::stack<const Instruction *>callstack;
     ICFGTraversal *gt = new ICFGTraversal(pag);
     for (const CallBlockNode *src : gt->identifySources())
     {
         for (const CallBlockNode *snk : gt->identifySinks())
         {
-            gt->DFS(visited, path, src, snk);
+            gt->DFS(visited, path, callstack, src, snk);
         }
     }
-    std::set<std::string> expected = {"START: 16->1->2->3->17->20->22->24->25->13->14->15->18->END", "START: 16->17->20->22->24->25->13->14->15->18->END"};
-    assert(expected == gt->getPaths());
+    
+    std::set<std::string> expected = {"START: 5->8->7->9->10->11->14->END", "START: 5->8->7->9->10->1->2->3->11->14->END", "START: 5->8->7->9->12->13->16->END","START: 5->8->7->9->12->1->2->3->13->16->END" };
+    assert(expected == gt->getPaths() && "test2 failed!");
+    std::cout << "test2 passed!" << "\n";
     LLVMModuleSet::releaseLLVMModuleSet();
     PAG::releasePAG();
     delete gt;
 }
 void Test()
 {
-    //TODO: running together problem, for each one will be fine
-    // SVFModule lack of destructor?
     Test1();
     Test2();
-    // Test3();
 }
 
 int main()
