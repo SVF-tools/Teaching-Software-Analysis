@@ -40,8 +40,7 @@ void ICFGTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
 }
 
 
-/// TODO: Implement your depth first search here to traversal each program path (once for any loop) from src to dst with context sensitive method
-
+/// TODO: Implement your context-sensitive ICFG traversal here to traverse each program path (once for any loop) from src to dst
 void ICFGTraversal::DFS(std::set<const ICFGNode *> &visited, std::vector<const ICFGNode *> &path, std::stack<const Instruction*> &callstack, const ICFGNode *src, const ICFGNode *dst)
 {
 
