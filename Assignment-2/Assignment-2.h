@@ -42,9 +42,12 @@ public:
     /// TODO: to be implemented
     void printICFGPath(std::vector<const ICFGNode *> &path);
 
-    /// TODO: to be implemented
+    /// TODO: to be implemented basic DFS
     void DFS(std::set<const ICFGNode *> &visited, std::vector<const ICFGNode *> &path, const ICFGNode *src, const ICFGNode *dst);
-
+    
+    /// TODO: to be implemented context sensitive DFS
+    void DFS(std::set<const ICFGNode *> &visited, std::vector<const ICFGNode *> &path, std::stack<const Instruction *> &callstack, const ICFGNode *src, const ICFGNode *dst);
+    
     // Identify source nodes on ICFG (i.e., call instruction with its callee function named 'src')
     virtual std::set<const CallBlockNode *> &identifySources()
     {

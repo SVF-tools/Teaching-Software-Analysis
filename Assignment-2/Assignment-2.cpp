@@ -34,13 +34,23 @@ using namespace std;
 /// TODO: print each path once this method is called, and
 /// add each path as a string into std::set<std::string> paths
 /// Print the path in the format "START: 1->2->4->5->END", where -> indicate an ICFGEdge connects two ICFGNode IDs
+
 void ICFGTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
 
 }
 
 
+
 /// TODO: Implement your depth first search here to traversal each program path (once for any loop) from src to dst
+/// pass the test1
 void ICFGTraversal::DFS(set<const ICFGNode *> &visited, vector<const ICFGNode *> &path, const ICFGNode *src, const ICFGNode *dst)
 {
     
+}
+/// TODO: Implement your depth first search here to traversal each program path (once for any loop) from src to dst with context sensitive method
+/// pass the test2
+void ICFGTraversal::DFS(std::set<const ICFGNode *> &visited, std::vector<const ICFGNode *> &path, std::stack<const Instruction*> &callstack, const ICFGNode *src, const ICFGNode *dst)
+{
+
+
 }
