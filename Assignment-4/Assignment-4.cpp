@@ -72,8 +72,9 @@ void TaintGraphTraversal::taintChecking(){
         for(const CallBlockNode* snk : identifySinks()){
             vector<const ICFGNode*> path;
             set<const ICFGNode*> visited;
+            std::stack<const Instruction *>callstack;
             if(aliasCheck(src,snk))
-                DFS(visited,path,src,snk);
+                DFS(visited, path, callstack, src, snk);
         }
     }
 }
