@@ -52,7 +52,7 @@ void Test1()
             gt->DFS(visited, path, callstack, src, snk);
         }
     }
-    std::set<std::string> expected = {"START: 20->1->2->3->4->END"};
+    std::set<std::string> expected = {"START: 16->1->2->END"};
     assert(expected == gt->getPaths() && "test1 failed!");
     std::cout << "test1 passed!" << "\n";
     LLVMModuleSet::releaseLLVMModuleSet();
