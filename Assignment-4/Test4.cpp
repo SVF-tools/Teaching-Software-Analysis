@@ -5,6 +5,7 @@
 static llvm::cl::opt<std::string> InputFilename(llvm::cl::Positional,
         llvm::cl::desc("<input bitcode>"), llvm::cl::init("-"));
 
+
 void Test(int argc, char ** argv)
 {
     int arg_num = 0;
@@ -22,7 +23,7 @@ void Test(int argc, char ** argv)
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag,andersenPTA);
     andersenPTA->analyze();
     taint->taintChecking();
-    set<string> expected = {"START:16->1->2->3->4->17->18->19->20->END", "START:16->17->18->19->20->END"};
+    set<string> expected = {"START: 9->1->2->3->4->10->11->END", "START: 9->10->11->END"};
     assert(taint->getPaths() == expected && " \n test1 failed !");
     cout << "\n test1 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
@@ -37,7 +38,5 @@ int main(int argc, char ** argv)
     Test(argc, argv);
     return 0;
 }
-
-
 
 
