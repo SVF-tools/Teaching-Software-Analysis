@@ -33,10 +33,6 @@ using namespace SVF;
 using namespace llvm;
 using namespace std;
 
-//parse and get the SrcSnk.txt filename 
-// params for assign-4 test1.ll -configSrcSnk SrcSnk.txt 
-static llvm::cl::opt<string> SrcSnk("configSrcSnk", llvm::cl::init(""),
-                                         llvm::cl::desc("Load Source && Sink API from file"));
 
 /// Checking alias of the variables at source and sink.
 bool TaintGraphTraversal::aliasCheck(const CallBlockNode *src, const CallBlockNode *snk)
@@ -81,9 +77,8 @@ std::set<const CallBlockNode *>& TaintGraphTraversal::identifySinks()
 // There is a tainted flow from p@source to q@sink 
 // if (1) alias(p,q)==true and (2) source reaches sink on ICFG.
 void TaintGraphTraversal::taintChecking(){
-    if (!SrcSnk.empty())
-        // add Src Snk function name AIP from file
-        readSrcSnkFormFile(SrcSnk);
+    // add Src Snk function name AIP from file
+    readSrcSnkFormFile("./Assignment-4/SrcSnk.txt");
     for(const CallBlockNode* src : identifySources()){
         for(const CallBlockNode* snk : identifySinks()){
             vector<const ICFGNode*> path;
@@ -96,8 +91,11 @@ void TaintGraphTraversal::taintChecking(){
 }
 
 /// TODO: print each path once this method is called, and
-/// (1) add each path (a sequence of node IDs) as a string into std::set<std::string> paths in the format "START: 1->2->4->5->END", where -> indicate an ICFGEdge connects two ICFGNode IDs
-/// (2) dump and append each program path to a `ICFGPaths.txt` in the form of ‘{ln: number cl: number, fl:name} -> {ln: number, cl: number, fl: name} -> {ln:number, cl: number, fl: name}
+/// (1) add each path (a sequence of node IDs) as a string into std::set<std::string> paths
+/// in the format "START: 1->2->4->5->END", where -> indicate an ICFGEdge connects two ICFGNode IDs
+/// bonus:  dump and append each program path to a `ICFGPaths.txt` in the form of
+/// ‘{ln: number cl: number, fl:name} -> {ln: number, cl: number, fl: name} -> {ln:number, cl: number, fl: name}
+/// ln : line number  cl: column number fl:file name  for further learning, you can review the code in SVF, SVFUtil
 void TaintGraphTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
 
 }
