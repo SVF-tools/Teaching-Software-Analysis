@@ -50,15 +50,31 @@ bool TaintGraphTraversal::aliasCheck(const CallBlockNode *src, const CallBlockNo
     return false;
 }
 
-// TODO: Implement your code here to collect sources function names read from checker_source_api
+// Get sources function names read from checker_source_api collected from a text file
 std::set<const CallBlockNode *>& TaintGraphTraversal::identifySources()
 {
-    return ICFGTraversal::identifySources();
+    for (const CallBlockNode *cs : pag->getCallSiteSet())
+    {
+        const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
+        if (checker_source_api.find(fun->getName()) != checker_source_api.end())
+        {
+            sources.insert(cs);
+        }
+    }
+    return sources;
 }
-// TODO: Implement your code here to collect sinks function names read from checker_sink_api
+// Get sinks function names read from checker_sink_api collected from a text file
 std::set<const CallBlockNode *>& TaintGraphTraversal::identifySinks()
 {
-    return ICFGTraversal::identifySinks();
+    for (const CallBlockNode *cs : pag->getCallSiteSet())
+    {
+        const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
+        if (checker_sink_api.find(fun->getName()) != checker_sink_api.end())
+        {
+            sinks.insert(cs);
+        }
+    }
+    return sinks;
 }
 
 // Start taint checking. 
@@ -79,9 +95,16 @@ void TaintGraphTraversal::taintChecking(){
     }
 }
 
-// TODO: Implement your code to parse each line from `SrcSnk.txt` in the form of 
-// line 1: "source -> { api api api }"
-// line 2: "sink   -> { api api api }" 
+/// TODO: print each path once this method is called, and
+/// (1) add each path (a sequence of node IDs) as a string into std::set<std::string> paths in the format "START: 1->2->4->5->END", where -> indicate an ICFGEdge connects two ICFGNode IDs
+/// (2) dump and append each program path to a `ICFGPaths.txt` in the form of ‘{ln: number cl: number, fl:name} -> {ln: number, cl: number, fl: name} -> {ln:number, cl: number, fl: name}
+void TaintGraphTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
+
+}
+
+// TODO: Implement your code to parse the two lines from `SrcSnk.txt` in the form of 
+// line 1 for sources  "{ api1, api2, api3 }"
+// line 2 for sinks    "{ api1, api2, api3 }" 
 void TaintGraphTraversal::readSrcSnkFormFile(const string& filename){
     
 }

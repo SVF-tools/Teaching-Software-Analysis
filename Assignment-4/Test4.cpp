@@ -23,7 +23,7 @@ void Test(int argc, char ** argv)
     andersenPTA->analyze();
     taint->taintChecking();
     set<string> expected = {"START:16->1->2->3->4->17->18->19->20->END", "START:16->17->18->19->20->END"};
-    assert(taint->getICFGPaths() == expected && " \n test1 failed !");
+    assert(taint->getPaths() == expected && " \n test1 failed !");
     cout << "\n test1 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
