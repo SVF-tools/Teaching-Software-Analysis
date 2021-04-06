@@ -36,13 +36,13 @@ using namespace std;
 
 /// TODO: print each path once this method is called, and
 /// add each path as a string into std::set<std::string> paths
-/// Print the path in the format "START: 1->2->4->5->END", where -> indicate an edge connects two node IDs
+/// Print the path in the format "START: 1->2->4->5->END", where -> indicate an edge connecting two node IDs
 void GraphTraversal::printPath(std::vector<const Node *> &path)
 {
 
 };
 
-/// TODO: Implement your depth first search here to traversal each program path (once for any loop) from src to dst
+/// TODO: Implement your depth first search here to traverse each program path (once for any loop) from src to dst
 void GraphTraversal::DFS(set<const Node *> &visited, vector<const Node *> &path, const Node *src, const Node *dst)
 {
 

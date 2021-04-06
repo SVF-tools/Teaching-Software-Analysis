@@ -34,27 +34,24 @@ class TaintGraphTraversal : public ICFGTraversal{
 
 public:
     // mapping a type to its corresponding APIs, e.g., source -> {getenv, ...}
-    typedef std::map<int, std::set<std::string> > api_map ;
     TaintGraphTraversal(PAG* pag, AndersenPTA* pta): ICFGTraversal(pag), ander(pta) {}
-    
-    // Can be used in adding elements to apis
-    void add_API(int index, const std::string api) { 
-        APIS[index].insert(api);
-    }
 
-    set<string> getICFGPaths(){ return paths;}
-
+    // Return true if two pointers are aliases
     bool aliasCheck(const CallBlockNode *src, const CallBlockNode *snk);
 
-    // TODO: Identify source nodes on ICFG (i.e., call instruction with its callee function named 'src')
+    // Identify source nodes on ICFG (i.e., call instruction with its callee function named 'src')
     std::set<const CallBlockNode *>& identifySources();
 
-    // TODO: Identify sink nodes on ICFG (i.e., call instruction with its callee function named 'sink')
+    // Identify sink nodes on ICFG (i.e., call instruction with its callee function named 'sink')
     std::set<const CallBlockNode *>& identifySinks();
+
+    // TODO: implement the path printing
+    void printICFGPath(std::vector<const ICFGNode *> &path);
 
     // TODO: Source and sink function names read from SrcSnk.txt
     void readSrcSnkFormFile(const string& filename);
     
+    // The driver method for taint checking
     void taintChecking();
 
 private:
@@ -63,8 +60,7 @@ private:
     // default source and sink function name API if SrcSnk.txt is not added
     std::set<std::string> checker_source_api {"source"};
     std::set<std::string> checker_sink_api {"sink"};
-    
-    api_map APIS {{0,checker_source_api}, {1,checker_sink_api}};
+   
 };
 
 #endif
