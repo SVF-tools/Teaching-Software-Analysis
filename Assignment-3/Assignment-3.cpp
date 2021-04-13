@@ -39,20 +39,24 @@ using namespace std;
 void AndersenPTA::solveWorklist(){
         processAllAddr();
 	
-	// Andersen's worklist-based transitive closure solving starts from  here
+	// TODO: Andersen's worklist-based transitive closure solving starts from here
+    while (!isWorklistEmpty()){
+    
+    }
 
 }
 
-// TODO: Initialize each pointer at the address constraint
+// Process all address constraints to initialize pointers' points-to sets
 void AndersenPTA::processAllAddr(){
     for (ConstraintGraph::const_iterator nodeIt = consCG->begin(), nodeEit = consCG->end(); nodeIt != nodeEit; nodeIt++)
     {
         ConstraintNode *cgNode = nodeIt->second;
-        for (ConstraintNode::const_iterator it = cgNode->incomingAddrsBegin(), eit = cgNode->incomingAddrsEnd();
-                it != eit; ++it)
-        {
-            const AddrCGEdge *addr = SVFUtil::cast<AddrCGEdge>(*it);
-	    /// Implement your code here:
+        for (ConstraintEdge* edge : cgNode->getAddrInEdges()) {
+            const AddrCGEdge *addr = SVFUtil::cast<AddrCGEdge>(edge);
+            NodeID dst = addr->getDstID();
+            NodeID src = addr->getSrcID();
+            if (addPts(dst, src))
+                pushIntoWorklist(dst);
         }
     }
 }
