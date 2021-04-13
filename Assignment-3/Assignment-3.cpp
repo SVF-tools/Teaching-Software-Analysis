@@ -41,7 +41,7 @@ void AndersenPTA::solveWorklist(){
 	
 	// TODO: Andersen's worklist-based transitive closure solving starts from here
     while (!isWorklistEmpty()){
-    
+        NodeID nodeId = popFromWorklist();
     }
 
 }
