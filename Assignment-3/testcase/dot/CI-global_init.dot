@@ -1,0 +1,41 @@
+digraph "PAG" {
+	label="PAG";
+
+	Node0x2811ae0 [shape=record,shape=Mrecord,label="{[main] RetPN ID: 71 unique return node for function main}"];
+	Node0x280f9c0 [shape=record,shape=septagon,label="{[foo] FIObjPN ID: 65 (base object) foo \{  \}}"];
+	Node0x280f9c0 -> Node0x280e8a0[color=green];
+	Node0x280f830 [shape=record,shape=septagon,label="{[main] FIObjPN ID: 70 (base object) main \{  \}}"];
+	Node0x280f830 -> Node0x280e780[color=green];
+	Node0x280ffb0 [shape=record,shape=septagon,label="{FIObjPN ID: 60 (base object) @global = common global i32 0, align 4 \{ Glob  \}}"];
+	Node0x280ffb0 -> Node0x280f190[color=green];
+	Node0x280fe50 [shape=record,shape=septagon,label="{FIObjPN ID: 63 (base object) @p_global = common global i32* null, align 8 \{ Glob  \}}"];
+	Node0x280fe50 -> Node0x2812e10[color=green];
+	Node0x280fce0 [shape=record,shape=septagon,label="{[MAYALIAS] FIObjPN ID: 85 (base object) MAYALIAS \{  \}}"];
+	Node0x280fce0 -> Node0x27f3e10[color=green];
+	Node0x280fb40 [shape=record,shape=septagon,label="{[main] FIObjPN ID: 73 (base object)   %retval = alloca i32, align 4 \{  \}}"];
+	Node0x280fb40 -> Node0x2815140[color=green];
+	Node0x28132f0 [shape=record,shape=circle,label="{[main] ValPN ID: 82   %3 = bitcast i32* %2 to i8* \{  \}}"];
+	Node0x2835b90 [shape=record,shape=circle,label="{[main] ValPN ID: 81   %2 = load i32*, i32** @p_global, align 8 \{  \}}"];
+	Node0x2835b90 -> Node0x28132f0[color=black];
+	Node0x280e8a0 [shape=record,shape=circle,label="{[foo] ValPN ID: 64 foo \{  \}}"];
+	Node0x280e780 [shape=record,shape=circle,label="{[main] ValPN ID: 69 main \{  \}}"];
+	Node0x280f190 [shape=record,shape=circle,label="{ValPN ID: 58 @global = common global i32 0, align 4 \{ Glob  \}}"];
+	Node0x280f190 -> Node0x2812e10[color=blue];
+	Node0x280f190 -> Node0x2815020[color=blue];
+	Node0x2812e10 [shape=record,shape=circle,label="{ValPN ID: 61 @p_global = common global i32* null, align 8 \{ Glob  \}}"];
+	Node0x2812e10 -> Node0x2835b90[color=red];
+	Node0x2813150 [shape=record,shape=septagon,label="{[main] FIObjPN ID: 75 (base object)   %p_local = alloca i32*, align 8 \{  \}}"];
+	Node0x2813150 -> Node0x2815020[color=green];
+	Node0x280d470 [shape=record,shape=Mcircle,label="{DummyObjPN ID: 1}"];
+	Node0x2815140 [shape=record,shape=circle,label="{[main] ValPN ID: 72   %retval = alloca i32, align 4 \{  \}}"];
+	Node0x28121d0 [shape=record,shape=circle,label="{[main] ValPN ID: 80   %1 = bitcast i32* %0 to i8* \{  \}}"];
+	Node0x28122f0 [shape=record,shape=circle,label="{[main] ValPN ID: 79   %0 = load i32*, i32** %p_local, align 8 \{  \}}"];
+	Node0x28122f0 -> Node0x28121d0[color=black];
+	Node0x2815020 [shape=record,shape=circle,label="{[main] ValPN ID: 74   %p_local = alloca i32*, align 8 \{  \}}"];
+	Node0x2815020 -> Node0x28122f0[color=red];
+	Node0x27f3e10 [shape=record,shape=circle,label="{[MAYALIAS] ValPN ID: 84 MAYALIAS \{  \}}"];
+	Node0x280d790 [shape=record,shape=diamond,label="{DummyValPN ID: 3}"];
+	Node0x280d790 -> Node0x280d600[color=black];
+	Node0x280d790 -> Node0x2812e10[color=blue];
+	Node0x280d600 [shape=record,shape=diamond,label="{DummyValPN ID: 2}"];
+}
