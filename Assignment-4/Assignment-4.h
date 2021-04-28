@@ -58,8 +58,8 @@ private:
     AndersenPTA* ander;
 
     // default source and sink function name API if SrcSnk.txt is not added
-    std::set<std::string> checker_source_api {"source"};
-    std::set<std::string> checker_sink_api {"sink"};
+    std::set<std::string> checker_source_api;
+    std::set<std::string> checker_sink_api;
    
 };
 
