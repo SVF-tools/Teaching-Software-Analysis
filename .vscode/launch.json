@@ -6,12 +6,12 @@
             "type": "cppdbg",
             "request": "launch",
             // Please change to executable of your working assignment e.g. Assignment-1: assign-1
-            "program": "${workspaceFolder}/bin/hello",
-            "args": [], // may input the test llvm bc file
+            "program": "${workspaceFolder}/bin/assign-3",
+            "args": ["-stat=false"], // may input the test llvm bc file or other options may use
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "MIMode": "gdb",
+            "MIMode": "lldb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

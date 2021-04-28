@@ -36,15 +36,15 @@
 
 void Test1()
 {
-    SVF::SVFModule *svfModule = SVF::LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-3/testcase/bc/CI-local.ll"});
+    
+    SVF::SVFModule *svfModule = SVF::LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-3/testcase/bc/no_alias.ll"});
     /// Build Program Assignment Graph (PAG)
     SVF::PAGBuilder builder;
     SVF::PAG *pag = builder.build(svfModule);
-    pag->dump ("./Assignment-3/testcase/dot/CI-local_init");
+    pag->dump ("./Assignment-3/testcase/dot/no_alias_init");
     AndersenPTA *andersenPTA = new AndersenPTA(pag);
     andersenPTA->analyze();
-    andersenPTA->dump_consCG("./Assignment-3/testcase/dot/CI-local_final");
-    andersenPTA->dumpTopLevelPtsTo();
+    andersenPTA->dump_consCG("./Assignment-3/testcase/dot/no_alias_final");
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
     delete andersenPTA; 
@@ -61,7 +61,6 @@ void Test2()
     AndersenPTA *andersenPTA = new AndersenPTA(pag);
     andersenPTA->analyze();
     andersenPTA->dump_consCG("./Assignment-3/testcase/dot/CI-global_final");
-    andersenPTA->dumpTopLevelPtsTo();
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
     delete andersenPTA; 
@@ -69,16 +68,14 @@ void Test2()
 
 void Test3()
 {
-    
-    SVF::SVFModule *svfModule = SVF::LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-3/testcase/bc/no_alias.ll"});
+    SVF::SVFModule *svfModule = SVF::LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-3/testcase/bc/CI-local.ll"});
     /// Build Program Assignment Graph (PAG)
     SVF::PAGBuilder builder;
     SVF::PAG *pag = builder.build(svfModule);
-    pag->dump ("./Assignment-3/testcase/dot/no_alias_init");
+    pag->dump ("./Assignment-3/testcase/dot/CI-local_init");
     AndersenPTA *andersenPTA = new AndersenPTA(pag);
     andersenPTA->analyze();
-    andersenPTA->dump_consCG("./Assignment-3/testcase/dot/no_alias_final");
-    andersenPTA->dumpTopLevelPtsTo();
+    andersenPTA->dump_consCG("./Assignment-3/testcase/dot/CI-local_final");
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
     delete andersenPTA; 
@@ -91,8 +88,15 @@ void Test()
 }
 
 
-int main()
+int main(int argc, char ** argv)
 {
+    // add  "args": ["-stat=false"] to launch.json file to eliminate the redundant program analysis details
+    int arg_num = 0;
+    char **arg_value = new char*[argc];
+    std::vector<std::string> moduleNameVec;
+    SVF::SVFUtil::processArguments(argc, argv, arg_num, arg_value, moduleNameVec);
+    llvm::cl::ParseCommandLineOptions(arg_num, arg_value,
+                                "Whole Program Points-to Analysis\n");
     Test();
     return 0;
 }
