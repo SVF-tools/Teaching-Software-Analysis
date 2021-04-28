@@ -45,7 +45,7 @@ public:
 
 private:
 	
-    // To be implemented
+    // Process all the address constraint edges
     void processAllAddr();
 
     // To be implemented
