@@ -78,7 +78,7 @@ std::set<const CallBlockNode *>& TaintGraphTraversal::identifySinks()
 // if (1) alias(p,q)==true and (2) source reaches sink on ICFG.
 void TaintGraphTraversal::taintChecking(){
     // add Src Snk function name AIP from file
-    readSrcSnkFormFile("./Assignment-4/SrcSnk.txt");
+    readSrcSnkFromFile("./Assignment-4/SrcSnk.txt");
     for(const CallBlockNode* src : identifySources()){
         for(const CallBlockNode* snk : identifySinks()){
             vector<const ICFGNode*> path;
@@ -103,6 +103,6 @@ void TaintGraphTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
 // TODO: Implement your code to parse the two lines from `SrcSnk.txt` in the form of 
 // line 1 for sources  "{ api1, api2, api3 }"
 // line 2 for sinks    "{ api1, api2, api3 }" 
-void TaintGraphTraversal::readSrcSnkFormFile(const string& filename){
+void TaintGraphTraversal::readSrcSnkFromFile(const string& filename){
     
 }
