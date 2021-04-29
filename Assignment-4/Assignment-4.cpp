@@ -77,7 +77,7 @@ std::set<const CallBlockNode *>& TaintGraphTraversal::identifySinks()
 // There is a tainted flow from p@source to q@sink 
 // if (1) alias(p,q)==true and (2) source reaches sink on ICFG.
 void TaintGraphTraversal::taintChecking(){
-    // add Src Snk function name AIP from file
+    // configure sources and sinks for taint analysis
     readSrcSnkFromFile("./Assignment-4/SrcSnk.txt");
     for(const CallBlockNode* src : identifySources()){
         for(const CallBlockNode* snk : identifySinks()){
