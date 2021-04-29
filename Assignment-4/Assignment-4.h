@@ -34,7 +34,7 @@ class TaintGraphTraversal : public ICFGTraversal{
 
 public:
     // mapping a type to its corresponding APIs, e.g., source -> {getenv, ...}
-    TaintGraphTraversal(PAG* pag, AndersenPTA* pta): ICFGTraversal(pag), ander(pta) {}
+    TaintGraphTraversal(PAG* pag): ICFGTraversal(pag){}
 
     // Return true if two pointers are aliases
     bool aliasCheck(const CallBlockNode *src, const CallBlockNode *snk);
