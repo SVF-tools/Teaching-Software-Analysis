@@ -103,6 +103,6 @@ void TaintGraphTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
 // TODO: Implement your code to parse the two lines from `SrcSnk.txt` in the form of 
 // line 1 for sources  "{ api1, api2, api3 }"
 // line 2 for sinks    "{ api1, api2, api3 }" 
-void TaintGraphTraversal::readSrcSnkFormFile(const string& filename){
+void TaintGraphTraversal::readSrcSnkFromFile(const string& filename){
     
 }
