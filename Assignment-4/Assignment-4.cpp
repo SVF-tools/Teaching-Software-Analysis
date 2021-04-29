@@ -79,6 +79,8 @@ std::set<const CallBlockNode *>& TaintGraphTraversal::identifySinks()
 void TaintGraphTraversal::taintChecking(){
     // configure sources and sinks for taint analysis
     readSrcSnkFromFile("./Assignment-4/SrcSnk.txt");
+    ander = new AndersenPTA(pag);
+    ander->analyze();
     for(const CallBlockNode* src : identifySources()){
         for(const CallBlockNode* snk : identifySinks()){
             vector<const ICFGNode*> path;
