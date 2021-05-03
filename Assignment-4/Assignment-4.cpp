@@ -34,18 +34,6 @@ using namespace llvm;
 using namespace std;
 
 
-/// Checking alias of the variables at source and sink.
-bool TaintGraphTraversal::aliasCheck(const CallBlockNode *src, const CallBlockNode *snk)
-{
-    const RetBlockNode* ret = src->getRetBlockNode();
-    const PAGNode* actualRetPAGNode = ret->getActualRet();
-    for(const PAGNode* param : snk->getActualParms()){
-        if(ander->alias(actualRetPAGNode->getId(), param->getId()))
-            return true;
-    }
-    return false;
-}
-
 // Get sources function names read from checker_source_api collected from a text file
 std::set<const CallBlockNode *>& TaintGraphTraversal::identifySources()
 {
@@ -107,4 +95,13 @@ void TaintGraphTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
 // line 2 for sinks    "{ api1, api2, api3 }" 
 void TaintGraphTraversal::readSrcSnkFromFile(const string& filename){
     
+}
+
+/// TODO: Checking aliases of the two variables at source and sink. For example: 
+/// src instruction:  actualRet = source();
+/// snk instruction:  sink(actualParm,...);
+/// return true if actualRet is aliased with any parameter at the snk node (e.g., via ander->alias(..,..))
+bool TaintGraphTraversal::aliasCheck(const CallBlockNode *src, const CallBlockNode *snk)
+{
+    return true;
 }
