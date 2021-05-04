@@ -14,7 +14,6 @@ int main(){
     char *injection = tgetstr();
     char* s = injection;
     char* b = s;
-    MAYALIAS(injection, s);
     char* safe_token = "hello";
     broadcast(safe_token);
     NOALIAS(safe_token,b);
