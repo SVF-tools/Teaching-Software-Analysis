@@ -6,6 +6,7 @@
 
 void Test1()
 {
+    cout << "\n running test1: " << endl;
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test1.ll"});
     /// Build Program Assignment Graph (PAG)
     SVF::PAGBuilder builder;
@@ -13,14 +14,14 @@ void Test1()
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
     taint->taintChecking();
     set<string> expected = {"START: 6->7->8->12->10->END", "START: 6->1->2->3->4->7->8->12->10->END"};
-    assert(taint->getPaths() == expected && " \n test1 failed !");
+    assert(taint->getPaths() == expected && " \n wrong paths generated - test1 failed !");
     cout << "\n test1 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
 }
 void Test2()
 {
-
+    cout << "\n running test2 :" << endl;
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test2.ll"});
     /// Build Program Assignment Graph (PAG)
     SVF::PAGBuilder builder;
@@ -29,7 +30,7 @@ void Test2()
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
     
     taint->taintChecking();
-    assert(taint->getPaths().size() == 0 && " \n test2 failed !");
+    assert(taint->getPaths().size() == 0 && " \n should not exist tainted path - test2 failed !");
     cout << "\n test2 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
@@ -37,7 +38,7 @@ void Test2()
 
 void Test3()
 {
-
+    cout << "\n running test3 :" << endl;
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test3.ll"});
     /// Build Program Assignment Graph (PAG)
     SVF::PAGBuilder builder;
@@ -46,7 +47,7 @@ void Test3()
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
     
     taint->taintChecking();
-    assert(taint->getPaths().size() == 0 && " \n test3 failed !");
+    assert(taint->getPaths().size() == 0 && " \n should not exist tainted path - test3 failed !");
     cout << "\n test3 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
@@ -55,7 +56,7 @@ void Test3()
 
 void Test4()
 {
-
+    cout << "\n running test4 :" << endl;
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test4.ll"});
     /// Build Program Assignment Graph (PAG)
     SVF::PAGBuilder builder;
@@ -65,7 +66,7 @@ void Test4()
     
     taint->taintChecking();
     set<string> expected = {"START: 6->1->2->3->4->7->8->9->10->11->13->15->END", "START: 6->7->8->9->10->11->13->15->END"};
-    assert(taint->getPaths() == expected && " \n test4 failed !");
+    assert(taint->getPaths() == expected && " \n wrong paths generated - test4 failed !");
     cout << "\n test4 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
