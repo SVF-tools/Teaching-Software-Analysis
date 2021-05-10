@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "/home/SVF-tools/SVF/**",
-                "${workspaceFolder}"
+                "${workspaceFolder}/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
