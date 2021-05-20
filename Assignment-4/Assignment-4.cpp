@@ -29,6 +29,8 @@
 #include <fstream>
 #include <sstream>
 #include <typeinfo>
+#include <string>
+
 using namespace SVF;
 using namespace llvm;
 using namespace std;
