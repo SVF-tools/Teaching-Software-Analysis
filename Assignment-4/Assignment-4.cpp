@@ -42,7 +42,7 @@ std::set<const CallBlockNode *>& TaintGraphTraversal::identifySources()
     for (const CallBlockNode *cs : pag->getCallSiteSet())
     {
         const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
-        if (checker_source_api.find(fun->getName()) != checker_source_api.end())
+        if (checker_source_api.find(fun->getName().str()) != checker_source_api.end())
         {
             sources.insert(cs);
         }
@@ -55,7 +55,7 @@ std::set<const CallBlockNode *>& TaintGraphTraversal::identifySinks()
     for (const CallBlockNode *cs : pag->getCallSiteSet())
     {
         const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
-        if (checker_sink_api.find(fun->getName()) != checker_sink_api.end())
+        if (checker_sink_api.find(fun->getName().str()) != checker_sink_api.end())
         {
             sinks.insert(cs);
         }

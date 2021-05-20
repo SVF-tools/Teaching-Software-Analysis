@@ -16,10 +16,6 @@ ENV build_deps="wget xz-utils cmake python git gdb"
 # Fetch dependencies.
 RUN apt-get update
 RUN apt-get install -y $build_deps $lib_deps
-# add glibc
-RUN apt install glibc-source
-WORKDIR /usr/src/glibc 
-RUN tar xvf glibc-2.27.tar.xz 
 
 # Fetch and build SVF source.
 RUN echo "Downloading LLVM and building SVF to " ${HOME}
