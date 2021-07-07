@@ -27,11 +27,8 @@
  // 
  */
 
-#include <iostream>
-#include <set>
-#include <vector>
+
 #include "Assignment-1.h"
-#include "Test1.h"
 using namespace std;
 
 /// TODO: print each path once this method is called, and
@@ -46,11 +43,4 @@ void GraphTraversal::printPath(std::vector<const Node *> &path)
 void GraphTraversal::DFS(set<const Node *> &visited, vector<const Node *> &path, const Node *src, const Node *dst)
 {
 
-}
-
-/// Entry of the program
-int main()
-{
-    Test();
-    return 0;
 }
