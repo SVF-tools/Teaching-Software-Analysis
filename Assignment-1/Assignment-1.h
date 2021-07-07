@@ -29,6 +29,8 @@
 #ifndef ASSIGNMENT_1_H_
 #define ASSIGNMENT_1_H_
 #include <iostream>
+#include <set>
+#include <vector>
 //declare
 class Node;
 class Edge;
