@@ -28,21 +28,6 @@ Please set this to environment variable to point to the LLVM build directory\
 (e.g. on linux: export LLVM_DIR=/path/to/llvm/build/dir)")
 endif()
 
-if (DEFINED Z3_DIR)
-    set(ENV{Z3_DIR} "${Z3_DIR}")
-endif()
-find_library(Z3_LIBRARIES NAMES libz3.a libz3.so
-                          HINTS $ENV{Z3_DIR}
-                          PATH_SUFFIXES bin)
-find_path(Z3_INCLUDES NAMES z3++.h
-                      HINTS $ENV{Z3_DIR}
-                      PATH_SUFFIXES include z3)
-if(NOT Z3_LIBRARIES OR NOT Z3_INCLUDES)
-    message(FATAL_ERROR "Z3 not found!")
-endif()
-message(STATUS "Found Z3: ${Z3_LIBRARIES}")
-message(STATUS "Z3 include dir: ${Z3_INCLUDES}")
-
 if (EXISTS "${SVF_DIR}")
 else()
     set(SVF_DIR $ENV{SVF_DIR})
@@ -72,8 +57,23 @@ endif()
 set(SVF_HEADER "${SVF_DIR}/include")
 include_directories(${SVF_HEADER})
 
+# set z3 env
+if (DEFINED Z3_DIR)
+    set(ENV{Z3_DIR} "${Z3_DIR}")
+else()
+    if (DEFINED ENV{Z3_DIR})
+        set(Z3_DIR $ENV{Z3_DIR})
+    else()
+    message(FATAL_ERROR "\
+WARNING: The Z3_DIR var was not set (required for an out-of-source build)!\n\
+Please set this to environment variable to point to the SVF_DIR directory or set this variable to cmake configuration\n
+(e.g. on linux: export Z3_DIR=/path/to/Z3/dir) \n or \n \n(make the project via: cmake -DZ3_DIR=your_path_to_Z3) ")
+    endif()
+endif()
+set(Z3_HEADER "${Z3_DIR}/include/")
+include_directories(${Z3_HEADER})
+LINK_DIRECTORIES(${Z3_DIR}/bin)
 
-#In each Assignment, please change the directory file name
 add_subdirectory(HelloWorld)
 add_subdirectory(CodeGraph)
 add_subdirectory(Assignment-1)
