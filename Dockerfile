@@ -1,4 +1,7 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
+
+# Stop ubuntu-20 interactive options.
+ENV DEBIAN_FRONTEND noninteractive
 
 # Stop script if any individual command fails.
 RUN set -e
@@ -10,8 +13,8 @@ ENV llvm_version=12.0.0
 ENV HOME=/home/SVF-tools
 
 # Define dependencies.
-ENV lib_deps="make g++-8 gcc-8 git zlib1g-dev libncurses5-dev libssl-dev libpcre2-dev zip vim"
-ENV build_deps="wget xz-utils cmake python git gdb"
+ENV lib_deps="make git g++-8 gcc-8 libssl-dev libpcre2-dev zip vim zlib1g-dev libncurses5-dev build-essential  zlib1g-dev"
+ENV build_deps="wget xz-utils cmake python git gdb tcl"
 
 # Fetch dependencies.
 RUN apt-get update
@@ -30,11 +33,12 @@ ENV PATH=${HOME}/SVF/Release-build/bin:$PATH
 ENV PATH=${HOME}/SVF/llvm-$llvm_version.obj/bin:$PATH
 ENV SVF_DIR=${HOME}/SVF
 ENV LLVM_DIR=${HOME}/SVF/llvm-$llvm_version.obj
+ENV Z3_DIR=${HOME}/SVF/z3.obj
 
 # Fetch and build SVF-Teaching example.
 WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/SVF-Teaching.git"
 WORKDIR ${HOME}/SVF-Teaching
 RUN echo "Building SVF-Teaching example ..."
-RUN cmake -DCMAKE_BUILD_TYPE=Debug .
+RUN cmake -DCMAKE_BUILD_TYPE=Release .
 RUN make
