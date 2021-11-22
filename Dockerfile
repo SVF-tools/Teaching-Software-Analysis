@@ -13,8 +13,8 @@ ENV llvm_version=12.0.0
 ENV HOME=/home/SVF-tools
 
 # Define dependencies.
-ENV lib_deps="cmake g++-8 gcc-8 libtinfo-dev libz-dev zip"
-ENV build_deps="wget git gdb"
+ENV lib_deps="g++-8 gcc-8 git zlib1g-dev libncurses5-dev build-essential libssl-dev libpcre2-dev zip"
+ENV build_deps="wget xz-utils cmake git gdb tcl"
 
 # Fetch dependencies.
 RUN apt-get update
