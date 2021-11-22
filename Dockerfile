@@ -14,7 +14,7 @@ ENV HOME=/home/SVF-tools
 
 # Define dependencies.
 ENV lib_deps="cmake g++-8 gcc-8 libtinfo-dev libz-dev zip"
-ENV build_deps="gdb"
+ENV build_deps="git gdb"
 
 # Fetch dependencies.
 RUN apt-get update
