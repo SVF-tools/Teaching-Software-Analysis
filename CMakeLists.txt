@@ -28,6 +28,21 @@ Please set this to environment variable to point to the LLVM build directory\
 (e.g. on linux: export LLVM_DIR=/path/to/llvm/build/dir)")
 endif()
 
+if (DEFINED Z3_DIR)
+    set(ENV{Z3_DIR} "${Z3_DIR}")
+endif()
+find_library(Z3_LIBRARIES NAMES libz3.a libz3.so
+                          HINTS $ENV{Z3_DIR}
+                          PATH_SUFFIXES bin)
+find_path(Z3_INCLUDES NAMES z3++.h
+                      HINTS $ENV{Z3_DIR}
+                      PATH_SUFFIXES include z3)
+if(NOT Z3_LIBRARIES OR NOT Z3_INCLUDES)
+    message(FATAL_ERROR "Z3 not found!")
+endif()
+message(STATUS "Found Z3: ${Z3_LIBRARIES}")
+message(STATUS "Z3 include dir: ${Z3_INCLUDES}")
+
 if (EXISTS "${SVF_DIR}")
 else()
     set(SVF_DIR $ENV{SVF_DIR})
