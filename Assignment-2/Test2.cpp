@@ -35,7 +35,8 @@ void Test1()
     std::vector<std::string> moduleNameVec = {"./Assignment-2/testcase/bc/test1.ll"};
 
     SVFModule *svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
-
+    svfModule->buildSymbolTableInfo();
+ 
     /// Build Program Assignment Graph (PAG)
     PAGBuilder builder;
     PAG *pag = builder.build(svfModule);
