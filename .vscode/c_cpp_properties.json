@@ -7,7 +7,7 @@
                 "${workspaceFolder}/**"
             ],
             "defines": [],
-            "compilerPath": "/home/SVF-tools/SVF/llvm-12.0.0.obj/bin/clang++",
+            "compilerPath": "/home/SVF-tools/SVF/llvm-13.0.0.obj/bin/clang++",
             "cStandard": "gnu11",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "linux-clang-x64"
