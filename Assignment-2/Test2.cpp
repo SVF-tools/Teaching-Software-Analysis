@@ -71,7 +71,7 @@ void Test2()
  
     /// Build Program Assignment Graph (PAG)
     SVFIRBuilder builder;
-    PAG *pag = builder.build(svfModule);
+    SVFIR *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
     icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
     std::vector<const ICFGNode *> path;
@@ -90,7 +90,7 @@ void Test2()
     assert(expected == gt->getPaths() && "test2 failed!");
     std::cout << "test2 passed!" << "\n";
     LLVMModuleSet::releaseLLVMModuleSet();
-    PAG::releasePAG();
+    SVFIR::releasePAG();
     delete gt;
 }
 void Test()

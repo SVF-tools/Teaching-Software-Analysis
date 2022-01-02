@@ -11,14 +11,14 @@ void Test1()
     svfModule->buildSymbolTableInfo();
     /// Build Program Assignment Graph (PAG)
     SVF::SVFIRBuilder builder;
-    SVF::PAG *pag = builder.build(svfModule);
+    SVF::SVFIR *pag = builder.build(svfModule);
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
     taint->taintChecking();
     set<string> expected = {"START: 6->7->8->12->10->END", "START: 6->1->2->3->4->7->8->12->10->END"};
     assert(taint->getPaths() == expected && " \n wrong paths generated - test1 failed !");
     cout << "\n test1 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
-    SVF::PAG::releasePAG();
+    SVF::SVFIR::releasePAG();
 }
 void Test2()
 {

@@ -74,13 +74,13 @@ void Test3()
     svfModule->buildSymbolTableInfo();
     /// Build Program Assignment Graph (PAG)
     SVF::SVFIRBuilder builder;
-    SVF::PAG *pag = builder.build(svfModule);
+    SVF::SVFIR *pag = builder.build(svfModule);
     pag->dump ("./Assignment-3/testcase/dot/CI-local_init");
     AndersenPTA *andersenPTA = new AndersenPTA(pag);
     andersenPTA->analyze();
     andersenPTA->dump_consCG("./Assignment-3/testcase/dot/CI-local_final");
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
-    SVF::PAG::releasePAG();
+    SVF::SVFIR::releasePAG();
     delete andersenPTA; 
 }
 void Test()
