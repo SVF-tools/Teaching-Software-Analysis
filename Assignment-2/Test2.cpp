@@ -38,7 +38,7 @@ void Test1()
     svfModule->buildSymbolTableInfo();
  
     /// Build Program Assignment Graph (PAG)
-    PAGBuilder builder;
+    SVFIRBuilder builder;
     PAG *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
     icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
@@ -70,7 +70,7 @@ void Test2()
     svfModule->buildSymbolTableInfo();
  
     /// Build Program Assignment Graph (PAG)
-    PAGBuilder builder;
+    SVFIRBuilder builder;
     PAG *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
     icfg->dump(svfModule->getModuleIdentifier() + ".icfg");

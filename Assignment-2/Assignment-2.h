@@ -28,8 +28,7 @@
 #define ASSIGNMENT_2_H_
 
 #include "SVF-FE/LLVMUtil.h"
-#include "SVF-FE/PAGBuilder.h"
-#include "Assignment-2.h"
+#include "SVF-FE/SVFIRBuilder.h"
 using namespace SVF;
 
 class ICFGTraversal

@@ -27,7 +27,7 @@
  */
 
 #include "SVF-FE/LLVMUtil.h"
-#include "SVF-FE/PAGBuilder.h"
+#include "SVF-FE/SVFIRBuilder.h"
 #include "WPA/Andersen.h"
 #include "Assignment-3.h"
 using namespace SVF;

@@ -30,7 +30,7 @@
 #include "Graphs/SVFG.h"
 #include "WPA/Andersen.h"
 #include "SABER/LeakChecker.h"
-#include "SVF-FE/PAGBuilder.h"
+#include "SVF-FE/SVFIRBuilder.h"
 
 
 using namespace SVF;
@@ -52,8 +52,8 @@ int main(int argc, char ** argv) {
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
 
     /// Build Program Assignment Graph (PAG)
-    PAGBuilder builder;
-    PAG *pag = builder.build(svfModule);
+    SVFIRBuilder builder;
+    SVFIR *pag = builder.build(svfModule);
     //dump pag
     pag->dump(svfModule->getModuleIdentifier() + ".pag");
     /// ICFG
