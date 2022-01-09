@@ -57,8 +57,9 @@ void Test1()
     assert(expected == gt->getPaths() && "test1 failed!");
     std::cout << "test1 passed!" << "\n";
     LLVMModuleSet::releaseLLVMModuleSet();
-    PAG::releasePAG();
+    SVFIR::releasePAG();
     delete gt;
+    delete svfModule;
 }
 
 void Test2()
@@ -91,6 +92,7 @@ void Test2()
     std::cout << "test2 passed!" << "\n";
     LLVMModuleSet::releaseLLVMModuleSet();
     SVFIR::releasePAG();
+    delete svfModule;
     delete gt;
 }
 void Test()
