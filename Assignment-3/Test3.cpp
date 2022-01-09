@@ -47,8 +47,9 @@ void Test1()
     andersenPTA->analyze();
     andersenPTA->dump_consCG("./Assignment-3/testcase/dot/no_alias_final");
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
-    SVF::PAG::releasePAG();
-    delete andersenPTA; 
+    SVF::SVFIR::releasePAG();
+    // delete andersenPTA; 
+    delete svfModule;
 }
 
 void Test2()
@@ -63,9 +64,10 @@ void Test2()
     AndersenPTA *andersenPTA = new AndersenPTA(pag);
     andersenPTA->analyze();
     andersenPTA->dump_consCG("./Assignment-3/testcase/dot/CI-global_final");
+    // delete andersenPTA; 
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
-    SVF::PAG::releasePAG();
-    delete andersenPTA; 
+    SVF::SVFIR::releasePAG();
+    delete svfModule;
 }
 
 void Test3()
@@ -79,9 +81,10 @@ void Test3()
     AndersenPTA *andersenPTA = new AndersenPTA(pag);
     andersenPTA->analyze();
     andersenPTA->dump_consCG("./Assignment-3/testcase/dot/CI-local_final");
+   // delete andersenPTA; 
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::SVFIR::releasePAG();
-    delete andersenPTA; 
+    delete svfModule;
 }
 void Test()
 {
