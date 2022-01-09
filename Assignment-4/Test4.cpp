@@ -19,6 +19,7 @@ void Test1()
     cout << "\n test1 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::SVFIR::releasePAG();
+    delete svfModule;
 }
 void Test2()
 {
@@ -36,6 +37,7 @@ void Test2()
     cout << "\n test2 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
+    delete svfModule;
 }
 
 void Test3()
@@ -54,6 +56,7 @@ void Test3()
     cout << "\n test3 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
+    delete svfModule;
 
 }
 
@@ -74,6 +77,7 @@ void Test4()
     cout << "\n test4 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::PAG::releasePAG();
+    delete svfModule;
 }
 int main(int argc, char ** argv)
 {
