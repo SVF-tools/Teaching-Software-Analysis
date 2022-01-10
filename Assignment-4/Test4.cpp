@@ -18,7 +18,7 @@ void Test1()
     assert(taint->getPaths() == expected && " \n wrong paths generated - test1 failed !");
     cout << "\n test1 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
-    SVF::SVFIR::releasePAG();
+    SVF::SVFIR::releaseSVFIR();
 }
 void Test2()
 {

@@ -80,7 +80,7 @@ void Test3()
     andersenPTA->analyze();
     andersenPTA->dump_consCG("./Assignment-3/testcase/dot/CI-local_final");
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
-    SVF::SVFIR::releasePAG();
+    SVF::SVFIR::releaseSVFIR();
     delete andersenPTA; 
 }
 void Test()
