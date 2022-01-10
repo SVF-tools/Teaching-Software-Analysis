@@ -35,7 +35,7 @@ void Test2()
     assert(taint->getPaths().size() == 0 && " \n should not exist tainted path - test2 failed !");
     cout << "\n test2 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
-    SVF::PAG::releasePAG();
+    SVF::SVFIR::releaseSVFIR();
 }
 
 void Test3()
@@ -52,8 +52,8 @@ void Test3()
     taint->taintChecking();
     assert(taint->getPaths().size() == 0 && " \n should not exist tainted path - test3 failed !");
     cout << "\n test3 passed !" << endl;
+    SVF::SVFIR::releaseSVFIR();
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
-    SVF::PAG::releasePAG();
 
 }
 
@@ -73,7 +73,7 @@ void Test4()
     assert(taint->getPaths() == expected && " \n wrong paths generated - test4 failed !");
     cout << "\n test4 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
-    SVF::PAG::releasePAG();
+    SVF::SVFIR::releaseSVFIR();
 }
 int main(int argc, char ** argv)
 {

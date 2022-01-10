@@ -72,7 +72,7 @@ int main(int argc, char ** argv) {
     }
 
     // iterate each PAGNode on PAG
-    for(PAG::iterator p = pag->begin(); p != pag->end();p++)
+    for(SVFIR::iterator p = pag->begin(); p != pag->end();p++)
     {
         PAGNode *n = p->second;
         // SVFUtil::outs() << n->toString() << "\n";

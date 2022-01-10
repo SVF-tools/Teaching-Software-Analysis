@@ -56,8 +56,8 @@ void Test1()
     std::set<std::string> expected = {"START: 16->1->2->END"};
     assert(expected == gt->getPaths() && "test1 failed!");
     std::cout << "test1 passed!" << "\n";
+    SVFIR::releaseSVFIR();
     LLVMModuleSet::releaseLLVMModuleSet();
-    PAG::releasePAG();
     delete gt;
 }
 
