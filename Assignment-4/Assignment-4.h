@@ -34,16 +34,16 @@ class TaintGraphTraversal : public ICFGTraversal{
 
 public:
     // mapping a type to its corresponding APIs, e.g., source -> {getenv, ...}
-    TaintGraphTraversal(PAG* pag): ICFGTraversal(pag){}
+    TaintGraphTraversal(SVFIR* pag): ICFGTraversal(pag){}
 
     // Return true if two pointers are aliases
-    bool aliasCheck(const CallBlockNode *src, const CallBlockNode *snk);
+    bool aliasCheck(const CallICFGNode *src, const CallICFGNode *snk);
 
     // Identify source nodes on ICFG (i.e., call instruction with its callee function named 'src')
-    std::set<const CallBlockNode *>& identifySources();
+    std::set<const CallICFGNode *>& identifySources();
 
     // Identify sink nodes on ICFG (i.e., call instruction with its callee function named 'sink')
-    std::set<const CallBlockNode *>& identifySinks();
+    std::set<const CallICFGNode *>& identifySinks();
 
     // TODO: implement the path printing
     void printICFGPath(std::vector<const ICFGNode *> &path);

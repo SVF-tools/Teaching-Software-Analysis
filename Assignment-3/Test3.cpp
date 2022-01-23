@@ -39,9 +39,9 @@ void Test1()
     
     SVF::SVFModule *svfModule = SVF::LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-3/testcase/bc/no_alias.ll"});
     svfModule->buildSymbolTableInfo();
-    /// Build Program Assignment Graph (PAG)
+    /// Build Program Assignment Graph (SVFIR)
     SVF::SVFIRBuilder builder;
-    SVF::PAG *pag = builder.build(svfModule);
+    SVF::SVFIR *pag = builder.build(svfModule);
     pag->dump ("./Assignment-3/testcase/dot/no_alias_init");
     AndersenPTA *andersenPTA = new AndersenPTA(pag);
     andersenPTA->analyze();
@@ -56,9 +56,9 @@ void Test2()
     
     SVF::SVFModule *svfModule = SVF::LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-3/testcase/bc/CI-global.ll"});
     svfModule->buildSymbolTableInfo();
-    /// Build Program Assignment Graph (PAG)
+    /// Build Program Assignment Graph (SVFIR)
     SVF::SVFIRBuilder builder;
-    SVF::PAG *pag = builder.build(svfModule);
+    SVF::SVFIR *pag = builder.build(svfModule);
     pag->dump ("./Assignment-3/testcase/dot/CI-global_init");
     AndersenPTA *andersenPTA = new AndersenPTA(pag);
     andersenPTA->analyze();
@@ -72,7 +72,7 @@ void Test3()
 {
     SVF::SVFModule *svfModule = SVF::LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-3/testcase/bc/CI-local.ll"});
     svfModule->buildSymbolTableInfo();
-    /// Build Program Assignment Graph (PAG)
+    /// Build Program Assignment Graph (SVFIR)
     SVF::SVFIRBuilder builder;
     SVF::SVFIR *pag = builder.build(svfModule);
     pag->dump ("./Assignment-3/testcase/dot/CI-local_init");

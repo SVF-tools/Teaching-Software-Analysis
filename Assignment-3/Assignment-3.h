@@ -34,7 +34,7 @@ class AndersenPTA: public SVF::AndersenBase
 {
 public:
     // Constructor
-    AndersenPTA(SVF::PAG* _pag) : AndersenBase(_pag){};
+    AndersenPTA(SVF::SVFIR* _pag) : AndersenBase(_pag){};
 
     //dump constraint graph
     void dump_consCG(string name)

@@ -14,12 +14,12 @@ digraph "ICFG" {
 	Node0x10170aca0 -> Node0x10170b180[style=solid];
 	Node0x10170aa80 [shape=record,color=blue,label="{NodeID: 19\nRetBlockNode ID: 19   call void @sink() \{fun: main\}}"];
 	Node0x10170aa80 -> Node0x10170aeb0[style=solid];
-	Node0x10170a900 [shape=record,color=red,label="{NodeID: 18\nCallBlockNode ID: 18   call void @sink() \{fun: main\}|{|<s1>0x101707988}}"];
+	Node0x10170a900 [shape=record,color=red,label="{NodeID: 18\nCallICFGNode ID: 18   call void @sink() \{fun: main\}|{|<s1>0x101707988}}"];
 	Node0x10170a900 -> Node0x10170aa80[style=solid];
 	Node0x10170a900:s1 -> Node0x101706150[style=solid,color=red];
 	Node0x10170a6e0 [shape=record,color=blue,label="{NodeID: 17\nRetBlockNode ID: 17   call void @source() \{fun: main\}}"];
 	Node0x10170a6e0 -> Node0x10170aca0[style=solid];
-	Node0x10170a560 [shape=record,color=red,label="{NodeID: 16\nCallBlockNode ID: 16   call void @source() \{fun: main\}|{|<s1>0x101707758}}"];
+	Node0x10170a560 [shape=record,color=red,label="{NodeID: 16\nCallICFGNode ID: 16   call void @source() \{fun: main\}|{|<s1>0x101707758}}"];
 	Node0x10170a560 -> Node0x10170a6e0[style=solid];
 	Node0x10170a560:s1 -> Node0x101705d60[style=solid,color=red];
 	Node0x1017092b0 [shape=record,color=black,label="{NodeID: 15\nIntraBlockNode ID: 15   br i1 %cmp, label %while.body, label %while.end \{fun: main\}}"];

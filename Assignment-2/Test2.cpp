@@ -37,18 +37,18 @@ void Test1()
     SVFModule *svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
     svfModule->buildSymbolTableInfo();
  
-    /// Build Program Assignment Graph (PAG)
+    /// Build Program Assignment Graph (SVFIR)
     SVFIRBuilder builder;
-    PAG *pag = builder.build(svfModule);
+    SVFIR *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
     icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
     std::vector<const ICFGNode *> path;
     std::stack<const Instruction *>callstack;
     std::set<const ICFGNode *> visited;
     ICFGTraversal *gt = new ICFGTraversal(pag);
-    for (const CallBlockNode *src : gt->identifySources())
+    for (const CallICFGNode *src : gt->identifySources())
     {
-        for (const CallBlockNode *snk : gt->identifySinks())
+        for (const CallICFGNode *snk : gt->identifySinks())
         {
             gt->DFS(visited, path, callstack, src, snk);
         }
@@ -69,7 +69,7 @@ void Test2()
     SVFModule *svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
     svfModule->buildSymbolTableInfo();
  
-    /// Build Program Assignment Graph (PAG)
+    /// Build Program Assignment Graph (SVFIR)
     SVFIRBuilder builder;
     SVFIR *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
@@ -78,9 +78,9 @@ void Test2()
     std::set<const ICFGNode *> visited;
     std::stack<const Instruction *>callstack;
     ICFGTraversal *gt = new ICFGTraversal(pag);
-    for (const CallBlockNode *src : gt->identifySources())
+    for (const CallICFGNode *src : gt->identifySources())
     {
-        for (const CallBlockNode *snk : gt->identifySinks())
+        for (const CallICFGNode *snk : gt->identifySinks())
         {
             gt->DFS(visited, path, callstack, src, snk);
         }

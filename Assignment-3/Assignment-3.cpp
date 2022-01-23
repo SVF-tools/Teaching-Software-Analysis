@@ -38,11 +38,41 @@ using namespace std;
 // TODO: Implement your Andersen's Algorithm here
 void AndersenPTA::solveWorklist(){
         processAllAddr();
-	
-	// TODO: Andersen's worklist-based transitive closure solving starts from here
-    while (!isWorklistEmpty()){
-        NodeID nodeId = popFromWorklist();
-    }
+
+        // Keep solving until workList is empty.
+        while (!isWorklistEmpty())
+        {
+            NodeID nodeId = popFromWorklist();
+            ConstraintNode *node = consCG->getConstraintNode(nodeId);
+
+            /// foreach o \in pts(p)
+            for (NodeID o : getPts(nodeId))
+            {
+
+                /// *p = q  pts(q) \subseteq pts(o) 
+                for (ConstraintEdge *edge : node->getStoreInEdges())
+                {
+                    if(addCopyEdge(edge->getSrcID(), o)){
+                        pushIntoWorklist(edge->getSrcID());
+                    }
+                }
+                // r = *p   pts(o) \subseteq pts(r)
+                for (ConstraintEdge *edge : node->getLoadOutEdges())
+                {
+                    if(addCopyEdge(o, edge->getDstID())){
+                        pushIntoWorklist(o);
+                    }
+                }
+            }
+
+            /// q = p or q = &p->f  pts(p) \subseteq pts(q)
+            for (ConstraintEdge *edge : node->getDirectOutEdges())
+            {
+                if(unionPts(edge->getDstID(),edge->getSrcID())){
+                    pushIntoWorklist(edge->getDstID());
+                }
+            }
+        }
 
 }
 
