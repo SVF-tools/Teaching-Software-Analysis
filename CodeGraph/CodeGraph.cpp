@@ -50,6 +50,7 @@ int main(int argc, char ** argv) {
                                 "Whole Program Points-to Analysis\n");
 
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
+    svfModule->buildSymbolTableInfo();
 
     /// Build Program Assignment Graph (SVFIR or PAG)
     SVFIRBuilder builder;
