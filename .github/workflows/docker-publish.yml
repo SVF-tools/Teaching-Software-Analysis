@@ -1,0 +1,29 @@
+name: Docker
+
+on:
+  push:
+    branches: [ main ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  DOCKER_USER: ${{secrets.DOCKER_USER}}
+  DOCKER_PASSWD: ${{secrets.DOCKER_PASSWD}}
+  
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Checkout repository
+        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWD
+      - name: Build on docker file
+        run: docker build . --file Dockerfile --tag latest
+      - name: Docker push
+        run : docker push ${{secrets.DOCKER_USER}}/svf-teaching
