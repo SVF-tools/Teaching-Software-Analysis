@@ -35,10 +35,10 @@ ENV SVF_DIR=${HOME}/SVF
 ENV LLVM_DIR=${HOME}/SVF/llvm-$llvm_version.obj
 ENV Z3_DIR=${HOME}/SVF/z3.obj
 
-# Fetch and build SVF-Teaching example.
+# Fetch and build Teaching-Software-Analysis example.
 WORKDIR ${HOME}
-RUN git clone "https://github.com/SVF-tools/SVF-Teaching.git"
-WORKDIR ${HOME}/SVF-Teaching
+RUN git clone "https://github.com/SVF-tools/Teaching-Software-Analysis.git"
+WORKDIR ${HOME}/Teaching-Software-Analysis
 RUN echo "Building SVF-Teaching example ..."
 RUN cmake -DCMAKE_BUILD_TYPE=Release .
 RUN make
