@@ -30,4 +30,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{secrets.DOCKER_USER}}/svf-teaching:latest
+          tags: ${{secrets.DOCKER_USER}}/teaching-software-analysis:latest
