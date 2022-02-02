@@ -3,7 +3,8 @@ name: Docker
 on:
   push:
     branches: [ main ]
-
+  repository_dispatch:
+    types: [ new-commit-from-SVF ]
 jobs:
   build:
 
