@@ -62,12 +62,8 @@ if (DEFINED Z3_DIR)
     set(ENV{Z3_DIR} "${Z3_DIR}")
 endif()
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
-    if(EXISTS "${Z3_DIR}/build")
-        find_package(Z3
-                REQUIRED
-                CONFIG
-                NO_DEFAULT_PATH
-                )
+    if(EXISTS "${Z3_DIR}/src")
+        find_package(Z3 REQUIRED CONFIG)
         include_directories(${Z3_CXX_INCLUDE_DIRS})
     else()
         find_library(Z3_LIBRARIES NAMES libz3.a libz3.so
