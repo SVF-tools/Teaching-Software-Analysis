@@ -38,11 +38,12 @@ using namespace std;
 // TODO: Implement your Andersen's Algorithm here
 void AndersenPTA::solveWorklist(){
         processAllAddr();
-	
-	// TODO: Andersen's worklist-based transitive closure solving starts from here
-    while (!isWorklistEmpty()){
-        NodeID nodeId = popFromWorklist();
-    }
+
+        // Keep solving until workList is empty.
+        while (!isWorklistEmpty())
+        {
+            
+        }
 
 }
 

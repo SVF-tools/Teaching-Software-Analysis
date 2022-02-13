@@ -21,7 +21,7 @@
 //===-----------------------------------------------------------------------===//
 
 /*
- // PAG ICFG Generation
+ // SVFIR ICFG Generation
  //
  // Author: Guanqin Zhang  email: 152585@uts.edu.au
  */
@@ -50,8 +50,9 @@ int main(int argc, char ** argv) {
                                 "Whole Program Points-to Analysis\n");
 
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
+    svfModule->buildSymbolTableInfo();
 
-    /// Build Program Assignment Graph (PAG)
+    /// Build Program Assignment Graph (SVFIR or PAG)
     SVFIRBuilder builder;
     SVFIR *pag = builder.build(svfModule);
     //dump pag
@@ -71,12 +72,12 @@ int main(int argc, char ** argv) {
         // }
     }
 
-    // iterate each PAGNode on PAG
+    // iterate each SVFVar on SVFIR
     for(SVFIR::iterator p = pag->begin(); p != pag->end();p++)
     {
-        PAGNode *n = p->second;
+        SVFVar *n = p->second;
         // SVFUtil::outs() << n->toString() << "\n";
-        // for(PAGEdge* edge : n->getOutEdges()){
+        // for(SVFStmt* edge : n->getOutEdges()){
         //     SVFUtil::outs() << edge->toString() << "\n";
         // }
     }

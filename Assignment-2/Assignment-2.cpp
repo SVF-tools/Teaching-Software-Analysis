@@ -35,7 +35,10 @@ using namespace std;
 /// add each path as a string into std::set<std::string> paths
 /// Print the path in the format "START: 1->2->4->5->END", where -> indicate an ICFGEdge connects two ICFGNode IDs
 
-void ICFGTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
+void ICFGTraversal::printICFGPath(std::vector<const ICFGNode *> &path)
+{
+    
+    
 
 }
 

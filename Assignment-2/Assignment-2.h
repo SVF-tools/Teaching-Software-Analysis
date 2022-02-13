@@ -36,7 +36,7 @@ class ICFGTraversal
 
 public:
 
-    ICFGTraversal(PAG *p) : pag(p) {}
+    ICFGTraversal(SVFIR *p) : pag(p) {}
 
     /// TODO: to be implemented
     virtual void printICFGPath(std::vector<const ICFGNode *> &path);
@@ -45,9 +45,9 @@ public:
     void DFS(std::set<const ICFGNode *> &visited, std::vector<const ICFGNode *> &path, std::stack<const Instruction *> &callstack, const ICFGNode *src, const ICFGNode *dst);
     
     // Identify source nodes on ICFG (i.e., call instruction with its callee function named 'src')
-    virtual std::set<const CallBlockNode *> &identifySources()
+    virtual std::set<const CallICFGNode *> &identifySources()
     {
-        for (const CallBlockNode *cs : pag->getCallSiteSet())
+        for (const CallICFGNode *cs : pag->getCallSiteSet())
         {
             const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
             if (fun->getName() == "source")
@@ -59,9 +59,9 @@ public:
     }
 
     // Identify sink nodes on ICFG (i.e., call instruction with its callee function named 'sink')
-    virtual std::set<const CallBlockNode *> &identifySinks()
+    virtual std::set<const CallICFGNode *> &identifySinks()
     {
-        for (const CallBlockNode *cs : pag->getCallSiteSet())
+        for (const CallICFGNode *cs : pag->getCallSiteSet())
         {
             const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
             if (fun->getName() == "sink")
@@ -76,10 +76,10 @@ public:
     }
 
 protected:
-    std::set<const CallBlockNode *> sources;
-    std::set<const CallBlockNode *> sinks;
+    std::set<const CallICFGNode *> sources;
+    std::set<const CallICFGNode *> sinks;
     std::set<std::string> paths;
-    PAG *pag;
+    SVFIR *pag;
 };
 
 #endif

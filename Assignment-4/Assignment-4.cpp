@@ -37,9 +37,9 @@ using namespace std;
 
 
 // Get sources function names read from checker_source_api collected from a text file
-std::set<const CallBlockNode *>& TaintGraphTraversal::identifySources()
+std::set<const CallICFGNode *>& TaintGraphTraversal::identifySources()
 {
-    for (const CallBlockNode *cs : pag->getCallSiteSet())
+    for (const CallICFGNode *cs : pag->getCallSiteSet())
     {
         const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
         if (checker_source_api.find(fun->getName().str()) != checker_source_api.end())
@@ -50,9 +50,9 @@ std::set<const CallBlockNode *>& TaintGraphTraversal::identifySources()
     return sources;
 }
 // Get sinks function names read from checker_sink_api collected from a text file
-std::set<const CallBlockNode *>& TaintGraphTraversal::identifySinks()
+std::set<const CallICFGNode *>& TaintGraphTraversal::identifySinks()
 {
-    for (const CallBlockNode *cs : pag->getCallSiteSet())
+    for (const CallICFGNode *cs : pag->getCallSiteSet())
     {
         const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
         if (checker_sink_api.find(fun->getName().str()) != checker_sink_api.end())
@@ -71,8 +71,8 @@ void TaintGraphTraversal::taintChecking(){
     readSrcSnkFromFile("./Assignment-4/SrcSnk.txt");
     ander = new AndersenPTA(pag);
     ander->analyze();
-    for(const CallBlockNode* src : identifySources()){
-        for(const CallBlockNode* snk : identifySinks()){
+    for(const CallICFGNode* src : identifySources()){
+        for(const CallICFGNode* snk : identifySinks()){
             vector<const ICFGNode*> path;
             set<const ICFGNode*> visited;
             std::stack<const Instruction *>callstack;
@@ -103,7 +103,7 @@ void TaintGraphTraversal::readSrcSnkFromFile(const string& filename){
 /// src instruction:  actualRet = source();
 /// snk instruction:  sink(actualParm,...);
 /// return true if actualRet is aliased with any parameter at the snk node (e.g., via ander->alias(..,..))
-bool TaintGraphTraversal::aliasCheck(const CallBlockNode *src, const CallBlockNode *snk)
+bool TaintGraphTraversal::aliasCheck(const CallICFGNode *src, const CallICFGNode *snk)
 {
     return true;
 }
