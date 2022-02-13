@@ -1,2 +1,0 @@
-source -> { source src set getname update getchar tgetstr }
-sink -> { sink mysql_query system require chmod broadcast }
