@@ -1,4 +1,4 @@
-//===- SVF-Teaching Assignment 2-------------------------------------//
+//===- Software-Analysis-Teaching Assignment 2-------------------------------------//
 //
 //     SVF: Static Value-Flow Analysis Framework for Source Code
 //
@@ -21,7 +21,7 @@
 //===-----------------------------------------------------------------------===//
 
 /*
- // Assignment 2 : Source Sink ICFG DFS Traversal
+ // Software-Analysis-Teaching Assignment 2 : Source Sink ICFG DFS Traversal
  //
  // 
  */

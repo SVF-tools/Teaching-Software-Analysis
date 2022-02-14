@@ -1,0 +1,25 @@
+digraph "ICFG" {
+	label="ICFG";
+
+	Node0x55cc83e74600 [shape=record,color=green,label="{FunExitICFGNode10 \{fun: main\}\nPhiStmt: [Var11 \<-- ([Var5, ICFGNode9],)]  \n   ret i32 0 }"];
+	Node0x55cc83e74420 [shape=record,color=black,label="{IntraICFGNode9 \{fun: main\}\n   ret i32 0 }"];
+	Node0x55cc83e74420 -> Node0x55cc83e74600[style=solid];
+	Node0x55cc83e64dc0 [shape=record,color=blue,label="{RetICFGNode8 \{fun: main\}}"];
+	Node0x55cc83e64dc0 -> Node0x55cc83e74420[style=solid];
+	Node0x55cc83e5fda0 [shape=record,color=red,label="{CallICFGNode7 \{fun: main\}}"];
+	Node0x55cc83e5fda0 -> Node0x55cc83e64dc0[style=solid];
+	Node0x55cc83e74150 [shape=record,color=black,label="{IntraICFGNode6 \{fun: main\}\nCopyStmt: [Var18 \<-- Var12]  \n   %2 = bitcast i32* %a to i8* }"];
+	Node0x55cc83e74150 -> Node0x55cc83e5fda0[style=solid];
+	Node0x55cc83e74030 [shape=record,color=black,label="{IntraICFGNode5 \{fun: main\}\nCopyStmt: [Var17 \<-- Var16]  \n   %1 = bitcast i32* %0 to i8* }"];
+	Node0x55cc83e74030 -> Node0x55cc83e74150[style=solid];
+	Node0x55cc83e73f10 [shape=record,color=black,label="{IntraICFGNode4 \{fun: main\}\nLoadStmt: [Var16 \<-- Var7]  \n   %0 = load i32*, i32** @global_ptr_f, align 8 }"];
+	Node0x55cc83e73f10 -> Node0x55cc83e74030[style=solid];
+	Node0x55cc83e73df0 [shape=record,color=black,label="{IntraICFGNode3 \{fun: main\}\nStoreStmt: [Var12 \<-- Var15]  \n   store i32 5, i32* %a, align 4 }"];
+	Node0x55cc83e73df0 -> Node0x55cc83e73f10[style=solid];
+	Node0x55cc83e73b80 [shape=record,color=black,label="{IntraICFGNode2 \{fun: main\}\nAddrStmt: [Var12 \<-- Var13]  \n   %a = alloca i32, align 4 }"];
+	Node0x55cc83e73b80 -> Node0x55cc83e73df0[style=solid];
+	Node0x55cc83e64890 [shape=record,color=yellow,label="{FunEntryICFGNode1 \{fun: main\}}"];
+	Node0x55cc83e64890 -> Node0x55cc83e73b80[style=solid];
+	Node0x55cc83e5f7f0 [shape=record,color=purple,label="{GlobalICFGNode0\nCopyStmt: [Var1 \<-- Var0]  \n i8* null \{ constant data \}\nAddrStmt: [Var5 \<-- Var3]  \n i32 0 \{ constant data \}\nAddrStmt: [Var15 \<-- Var3]  \n i32 5 \{ constant data \}\nAddrStmt: [Var4 \<-- Var6]  \n @global_obj_f = dso_local global i32 0, align 4 \{ Glob  \}\nStoreStmt: [Var4 \<-- Var5]  \n i32 0 \{ constant data \}\nAddrStmt: [Var7 \<-- Var8]  \n @global_ptr_f = dso_local global i32* @global_obj_f, align 8 \{ Glob  \}\nStoreStmt: [Var7 \<-- Var4]  \n @global_obj_f = dso_local global i32 0, align 4 \{ Glob  \}\nAddrStmt: [Var9 \<-- Var10]  \n main \nAddrStmt: [Var20 \<-- Var21]  \n NOALIAS }"];
+	Node0x55cc83e5f7f0 -> Node0x55cc83e64890[style=solid];
+}

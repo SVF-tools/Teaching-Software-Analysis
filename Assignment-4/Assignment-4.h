@@ -1,4 +1,4 @@
-//===- SVF-Teaching Assignment 4-------------------------------------//
+//===- Software-Analysis-Teaching Assignment 4-------------------------------------//
 //
 //    SVF: Static Value-Flow Analysis Framework for Source Code    
 //
@@ -21,7 +21,7 @@
 //===-----------------------------------------------------------------------===//
 
 /*
- // SVF-Teaching Assignment 4: Information Flow Tracking
+ // Software-Analysis-Teaching Assignment 4: Information Flow Tracking
  //
  // 
  */

@@ -1,4 +1,4 @@
-//===- SVF-Teaching Assignment 3-------------------------------------//
+//===- Software-Analysis-Teaching Assignment 3-------------------------------------//
 //
 //     SVF: Static Value-Flow Analysis Framework for Source Code
 //
@@ -21,7 +21,7 @@
 //===-----------------------------------------------------------------------===//
 
 /*
- // Assignment 3 : Andersen's pointer analysis
+ // Software-Analysis-Teaching Assignment 3 : Andersen's pointer analysis
  //
  // 
  */
