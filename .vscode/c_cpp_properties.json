@@ -3,14 +3,17 @@
         {
             "name": "Linux",
             "includePath": [
+                "/usr/include/**",
+                "/usr/local/include/**",
                 "/home/SVF-tools/SVF/**",
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/home/SVF-tools/SVF/llvm-13.0.0.obj/**"
             ],
             "defines": [],
-            "compilerPath": "/home/SVF-tools/SVF/llvm-13.0.0.obj/bin/clang++",
+            "compilerPath": "/usr/bin/g++",
             "cStandard": "gnu11",
             "cppStandard": "gnu++14",
-            "intelliSenseMode": "linux-clang-x64"
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4
