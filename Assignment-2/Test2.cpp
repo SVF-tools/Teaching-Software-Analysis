@@ -41,7 +41,8 @@ void Test1()
     SVFIRBuilder builder;
     SVFIR *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
-    icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
+    // If you want to test your own case, plase change the dump name
+    icfg->dump("./Assignment-2/testcase/dot/test1.ll.icfg");
     std::vector<const ICFGNode *> path;
     std::stack<const Instruction *>callstack;
     std::set<const ICFGNode *> visited;
@@ -73,7 +74,8 @@ void Test2()
     SVFIRBuilder builder;
     SVFIR *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
-    icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
+    // If you want to test your own case, plase change the dump name
+    icfg->dump("./Assignment-2/testcase/dot/test2.ll.icfg");
     std::vector<const ICFGNode *> path;
     std::set<const ICFGNode *> visited;
     std::stack<const Instruction *>callstack;
@@ -86,7 +88,7 @@ void Test2()
         }
     }
     
-    std::set<std::string> expected = {"START: 5->8->7->9->10->11->14->END", "START: 5->8->7->9->10->1->2->3->11->14->END", "START: 5->8->7->9->12->13->16->END","START: 5->8->7->9->12->1->2->3->13->16->END" };
+    std::set<std::string> expected = {"START: 5->6->7->8->11->1->2->3->12->15->END", "START: 5->6->7->8->9->1->2->3->10->13->END"};
     assert(expected == gt->getPaths() && "test2 failed!");
     std::cout << "test2 passed!" << "\n";
     LLVMModuleSet::releaseLLVMModuleSet();
