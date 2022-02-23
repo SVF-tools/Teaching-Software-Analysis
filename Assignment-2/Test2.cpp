@@ -41,7 +41,8 @@ void Test1()
     SVFIRBuilder builder;
     SVFIR *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
-    icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
+    // If you want to test your own case, plase change the dump name
+    icfg->dump("./Assignment-2/testcase/dot/test1.ll.icfg");
     std::vector<const ICFGNode *> path;
     std::stack<const Instruction *>callstack;
     std::set<const ICFGNode *> visited;
@@ -73,7 +74,8 @@ void Test2()
     SVFIRBuilder builder;
     SVFIR *pag = builder.build(svfModule);
     ICFG *icfg = pag->getICFG();
-    icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
+    // If you want to test your own case, plase change the dump name
+    icfg->dump("./Assignment-2/testcase/dot/test2.ll.icfg");
     std::vector<const ICFGNode *> path;
     std::set<const ICFGNode *> visited;
     std::stack<const Instruction *>callstack;

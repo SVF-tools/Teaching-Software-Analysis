@@ -1,0 +1,47 @@
+digraph "ICFG" {
+	label="ICFG";
+
+	Node0x5593c9c0b430 [shape=record,color=green,label="{FunExitICFGNode20 \{fun: main\}\nPhiStmt: [Var11 \<-- ([Var16, ICFGNode19],)]  \n   ret i32 0 }"];
+	Node0x5593c9c0b1b0 [shape=record,color=black,label="{IntraICFGNode19 \{fun: main\}\n   ret i32 0 }"];
+	Node0x5593c9c0b1b0 -> Node0x5593c9c0b430[style=solid];
+	Node0x5593c9c31f50 [shape=record,color=black,label="{IntraICFGNode18 \{fun: main\}\nBranchStmt: [ Unconditional branch]\nSuccessor 0 ICFGNode19   \n   br label %if.end }"];
+	Node0x5593c9c31f50 -> Node0x5593c9c0b1b0[style=solid];
+	Node0x5593c9c16ff0 [shape=record,color=black,label="{IntraICFGNode17 \{fun: main\}\nBranchStmt: [ Unconditional branch]\nSuccessor 0 ICFGNode19   \n   br label %if.end }"];
+	Node0x5593c9c16ff0 -> Node0x5593c9c0b1b0[style=solid];
+	Node0x5593c9c0ace0 [shape=record,color=blue,label="{RetICFGNode16 \{fun: main\}}"];
+	Node0x5593c9c0ace0 -> Node0x5593c9c31f50[style=solid];
+	Node0x5593c9c01140 [shape=record,color=red,label="{CallICFGNode15 \{fun: main\}}"];
+	Node0x5593c9c01140 -> Node0x5593c9c0ace0[style=solid];
+	Node0x5593c9c31e20 [shape=record,color=blue,label="{RetICFGNode14 \{fun: main\}}"];
+	Node0x5593c9c31e20 -> Node0x5593c9c16ff0[style=solid];
+	Node0x5593c9c01e20 [shape=record,color=red,label="{CallICFGNode13 \{fun: main\}}"];
+	Node0x5593c9c01e20 -> Node0x5593c9c31e20[style=solid];
+	Node0x5593c9c166a0 [shape=record,color=purple,label="{GlobalICFGNode0\nCopyStmt: [Var1 \<-- Var0]  \n i8* null \{ constant data \}\nAddrStmt: [Var16 \<-- Var3]  \n i32 0 \{ constant data \}\nAddrStmt: [Var4 \<-- Var5]  \n bar \nAddrStmt: [Var9 \<-- Var10]  \n main \nAddrStmt: [Var13 \<-- Var14]  \n source \nAddrStmt: [Var20 \<-- Var21]  \n sink }"];
+	Node0x5593c9c166a0 -> Node0x5593c9c14d20[style=solid];
+	Node0x5593c9c14f30 [shape=record,color=yellow,label="{FunEntryICFGNode1 \{fun: bar\}}"];
+	Node0x5593c9c14f30 -> Node0x5593c9c16880[style=solid];
+	Node0x5593c9c16880 [shape=record,color=black,label="{IntraICFGNode2 \{fun: bar\}\n   ret i32 %s }"];
+	Node0x5593c9c16880 -> Node0x5593c9c14e60[style=solid];
+	Node0x5593c9c14e60 [shape=record,color=green,label="{FunExitICFGNode3 \{fun: bar\}\nPhiStmt: [Var6 \<-- ([Var7, ICFGNode2],)]  \n   ret i32 %s |{<s0>0x5593c9c09680|<s1>0x5593c9c097c0}}"];
+	Node0x5593c9c14e60:s0 -> Node0x5593c9c163d0[style=solid,color=blue];
+	Node0x5593c9c14e60:s1 -> Node0x5593c9c16a60[style=solid,color=blue];
+	Node0x5593c9c14d20 [shape=record,color=yellow,label="{FunEntryICFGNode4 \{fun: main\}}"];
+	Node0x5593c9c14d20 -> Node0x5593c9c03cd0[style=solid];
+	Node0x5593c9c03cd0 [shape=record,color=red,label="{CallICFGNode5 \{fun: main\}}"];
+	Node0x5593c9c03cd0 -> Node0x5593c9c05f90[style=solid];
+	Node0x5593c9c05f90 [shape=record,color=blue,label="{RetICFGNode6 \{fun: main\}}"];
+	Node0x5593c9c05f90 -> Node0x5593c9c16c30[style=solid];
+	Node0x5593c9c16c30 [shape=record,color=black,label="{IntraICFGNode7 \{fun: main\}\nCmpStmt: [Var15 \<-- (Var12 predicate38 Var16)]  \n   %cmp = icmp sgt i32 %call, 0 }"];
+	Node0x5593c9c16c30 -> Node0x5593c9c16e10[style=solid];
+	Node0x5593c9c16e10 [shape=record,color=black,label="{IntraICFGNode8 \{fun: main\}\nBranchStmt: [Condition Var15]\nSuccessor 0 ICFGNode9   Successor 1 ICFGNode11   \n   br i1 %cmp, label %if.then, label %if.else }"];
+	Node0x5593c9c16e10 -> Node0x5593c9c00530[style=solid];
+	Node0x5593c9c16e10 -> Node0x5593c9c01c20[style=solid];
+	Node0x5593c9c00530 [shape=record,color=red,label="{CallICFGNode9 \{fun: main\}\nCallPE: [Var7 \<-- Var12]  \n   %call1 = call i32 @bar(i32 %call) |{<s0>0x5593c9c09680}}"];
+	Node0x5593c9c00530:s0 -> Node0x5593c9c14f30[style=solid,color=red];
+	Node0x5593c9c163d0 [shape=record,color=blue,label="{RetICFGNode10 \{fun: main\}\nRetPE: [Var18 \<-- Var6]  \n   %call1 = call i32 @bar(i32 %call) }"];
+	Node0x5593c9c163d0 -> Node0x5593c9c01e20[style=solid];
+	Node0x5593c9c01c20 [shape=record,color=red,label="{CallICFGNode11 \{fun: main\}\nCallPE: [Var7 \<-- Var12]  \n   %call2 = call i32 @bar(i32 %call) |{<s0>0x5593c9c097c0}}"];
+	Node0x5593c9c01c20:s0 -> Node0x5593c9c14f30[style=solid,color=red];
+	Node0x5593c9c16a60 [shape=record,color=blue,label="{RetICFGNode12 \{fun: main\}\nRetPE: [Var24 \<-- Var6]  \n   %call2 = call i32 @bar(i32 %call) }"];
+	Node0x5593c9c16a60 -> Node0x5593c9c01140[style=solid];
+}
