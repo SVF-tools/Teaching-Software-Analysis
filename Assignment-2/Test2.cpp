@@ -88,7 +88,7 @@ void Test2()
         }
     }
     
-    std::set<std::string> expected = {"START: 5->8->7->9->10->11->14->END", "START: 5->8->7->9->10->1->2->3->11->14->END", "START: 5->8->7->9->12->13->16->END","START: 5->8->7->9->12->1->2->3->13->16->END" };
+    std::set<std::string> expected = {"START: 5->6->7->8->11->1->2->3->12->15->END", "START: 5->6->7->8->9->1->2->3->10->13->END"};
     assert(expected == gt->getPaths() && "test2 failed!");
     std::cout << "test2 passed!" << "\n";
     LLVMModuleSet::releaseLLVMModuleSet();
