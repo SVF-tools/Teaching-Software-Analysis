@@ -49,7 +49,7 @@ public:
     void printICFGPath(std::vector<const ICFGNode *> &path);
 
     // TODO: Source and sink function names read from SrcSnk.txt
-    void readSrcSnkFromFile(const string& filename);
+    void readSrcSnkFromFile(const std::string& filename);
     
     // The driver method for taint checking
     void taintChecking();

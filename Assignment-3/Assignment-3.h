@@ -37,7 +37,7 @@ public:
     AndersenPTA(SVF::SVFIR* _pag) : AndersenBase(_pag){};
 
     //dump constraint graph
-    void dump_consCG(string name)
+    void dump_consCG(std::string name)
     {
         consCG->dump(name);
     };

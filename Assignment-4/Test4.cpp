@@ -30,6 +30,7 @@
 #include "Graphs/PTACallGraph.h"
 #include "Assignment-4.h"
 
+using namespace std;
 
 void Test1()
 {
