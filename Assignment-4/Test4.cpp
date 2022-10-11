@@ -42,7 +42,7 @@ void Test1()
     SVF::SVFIR *pag = builder.build(svfModule);
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
     taint->taintChecking();
-    set<string> expected = {"START: 2->3->4->5->6->END"};
+    set<string> expected = {"START: 6->1->2->3->4->7->8->9->10->END"};
     assert(taint->getPaths() == expected && " \n wrong paths generated - test1 failed !");
     cout << "\n test1 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
