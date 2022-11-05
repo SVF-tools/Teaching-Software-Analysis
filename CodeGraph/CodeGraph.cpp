@@ -53,8 +53,8 @@ int main(int argc, char ** argv) {
     svfModule->buildSymbolTableInfo();
 
     /// Build Program Assignment Graph (SVFIR or PAG)
-    SVFIRBuilder builder;
-    SVFIR *pag = builder.build(svfModule);
+    SVFIRBuilder builder(svfModule);
+    SVFIR *pag = builder.build();
     //dump pag
     pag->dump(svfModule->getModuleIdentifier() + ".pag");
     /// ICFG

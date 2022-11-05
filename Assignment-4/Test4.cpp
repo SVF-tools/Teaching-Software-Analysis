@@ -38,8 +38,8 @@ void Test1()
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test1.ll"});
     svfModule->buildSymbolTableInfo();
     /// Build Program Assignment Graph (SVFIR)
-    SVF::SVFIRBuilder builder;
-    SVF::SVFIR *pag = builder.build(svfModule);
+    SVF::SVFIRBuilder builder(svfModule);
+    SVF::SVFIR *pag = builder.build();
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
     taint->taintChecking();
     set<string> expected = {"START: 6->1->2->3->4->7->8->9->10->END"};
@@ -54,8 +54,8 @@ void Test2()
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test2.ll"});
     svfModule->buildSymbolTableInfo();
     /// Build Program Assignment Graph (SVFIR)
-    SVF::SVFIRBuilder builder;
-    SVF::SVFIR *pag = builder.build(svfModule);
+    SVF::SVFIRBuilder builder(svfModule);
+    SVF::SVFIR *pag = builder.build();
 
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
     
@@ -72,8 +72,8 @@ void Test3()
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test3.ll"});
     svfModule->buildSymbolTableInfo();
     /// Build Program Assignment Graph (SVFIR)
-    SVF::SVFIRBuilder builder;
-    SVF::SVFIR *pag = builder.build(svfModule);
+    SVF::SVFIRBuilder builder(svfModule);
+    SVF::SVFIR *pag = builder.build();
 
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
     
@@ -91,8 +91,8 @@ void Test4()
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test4.ll"});
     svfModule->buildSymbolTableInfo();
     /// Build Program Assignment Graph (SVFIR)
-    SVF::SVFIRBuilder builder;
-    SVF::SVFIR *pag = builder.build(svfModule);
+    SVF::SVFIRBuilder builder(svfModule);
+    SVF::SVFIR *pag = builder.build();
 
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
     

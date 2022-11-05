@@ -38,8 +38,8 @@ void Test1()
     svfModule->buildSymbolTableInfo();
  
     /// Build Program Assignment Graph (SVFIR)
-    SVFIRBuilder builder;
-    SVFIR *pag = builder.build(svfModule);
+    SVFIRBuilder builder(svfModule);
+    SVFIR *pag = builder.build();
     ICFG *icfg = pag->getICFG();
     // If you want to test your own case, plase change the dump name
     icfg->dump("./Assignment-2/testcase/dot/test1.ll.icfg");
@@ -71,8 +71,8 @@ void Test2()
     svfModule->buildSymbolTableInfo();
  
     /// Build Program Assignment Graph (SVFIR)
-    SVFIRBuilder builder;
-    SVFIR *pag = builder.build(svfModule);
+    SVFIRBuilder builder(svfModule);
+    SVFIR *pag = builder.build();
     ICFG *icfg = pag->getICFG();
     // If you want to test your own case, plase change the dump name
     icfg->dump("./Assignment-2/testcase/dot/test2.ll.icfg");
