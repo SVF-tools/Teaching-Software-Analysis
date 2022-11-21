@@ -28,8 +28,8 @@
 
 #include "Assignment-3.h"
 
-#include "SVF-FE/LLVMUtil.h"
-#include "SVF-FE/SVFIRBuilder.h"
+#include "SVF-LLVM/LLVMUtil.h"
+#include "SVF-LLVM/SVFIRBuilder.h"
 #include "WPA/Andersen.h"
 #include "Util/SVFUtil.h"
 #include "Assignment-3.h"
@@ -38,7 +38,6 @@ void Test1()
 {
     
     SVF::SVFModule *svfModule = SVF::LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-3/testcase/bc/no_alias.ll"});
-    svfModule->buildSymbolTableInfo();
     /// Build Program Assignment Graph (SVFIR)
     SVF::SVFIRBuilder builder(svfModule);
     SVF::SVFIR *pag = builder.build();
@@ -55,7 +54,6 @@ void Test2()
 {
     
     SVF::SVFModule *svfModule = SVF::LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-3/testcase/bc/CI-global.ll"});
-    svfModule->buildSymbolTableInfo();
     /// Build Program Assignment Graph (SVFIR)
     SVF::SVFIRBuilder builder(svfModule);
     SVF::SVFIR *pag = builder.build();
@@ -71,7 +69,6 @@ void Test2()
 void Test3()
 {
     SVF::SVFModule *svfModule = SVF::LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-3/testcase/bc/CI-local.ll"});
-    svfModule->buildSymbolTableInfo();
     /// Build Program Assignment Graph (SVFIR)
     SVF::SVFIRBuilder builder(svfModule);
     SVF::SVFIR *pag = builder.build();

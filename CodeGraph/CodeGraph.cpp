@@ -26,11 +26,11 @@
  // Author: Guanqin Zhang  email: 152585@uts.edu.au
  */
 
-#include "SVF-FE/LLVMUtil.h"
+#include "SVF-LLVM/LLVMUtil.h"
 #include "Graphs/SVFG.h"
 #include "WPA/Andersen.h"
 #include "SABER/LeakChecker.h"
-#include "SVF-FE/SVFIRBuilder.h"
+#include "SVF-LLVM/SVFIRBuilder.h"
 
 
 using namespace SVF;
@@ -50,7 +50,6 @@ int main(int argc, char ** argv) {
                                 "Whole Program Points-to Analysis\n");
 
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
-    svfModule->buildSymbolTableInfo();
 
     /// Build Program Assignment Graph (SVFIR or PAG)
     SVFIRBuilder builder(svfModule);

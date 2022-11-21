@@ -27,8 +27,8 @@
 #ifndef ASSIGNMENT_2_H_
 #define ASSIGNMENT_2_H_
 
-#include "SVF-FE/LLVMUtil.h"
-#include "SVF-FE/SVFIRBuilder.h"
+#include "SVF-LLVM/LLVMUtil.h"
+#include "SVF-LLVM/SVFIRBuilder.h"
 using namespace SVF;
 
 class ICFGTraversal
