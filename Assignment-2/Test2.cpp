@@ -43,7 +43,7 @@ void Test1()
     // If you want to test your own case, plase change the dump name
     icfg->dump("./Assignment-2/testcase/dot/test1.ll.icfg");
     std::vector<const ICFGNode *> path;
-    std::stack<const Instruction *>callstack;
+    std::stack<const SVFInstruction *>callstack;
     std::set<const ICFGNode *> visited;
     ICFGTraversal *gt = new ICFGTraversal(pag);
     for (const CallICFGNode *src : gt->identifySources())
@@ -76,7 +76,7 @@ void Test2()
     icfg->dump("./Assignment-2/testcase/dot/test2.ll.icfg");
     std::vector<const ICFGNode *> path;
     std::set<const ICFGNode *> visited;
-    std::stack<const Instruction *>callstack;
+    std::stack<const SVFInstruction *>callstack;
     ICFGTraversal *gt = new ICFGTraversal(pag);
     for (const CallICFGNode *src : gt->identifySources())
     {
