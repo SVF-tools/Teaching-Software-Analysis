@@ -25,10 +25,14 @@
  //
  // 
  */
+#include "Assignment-4.h"
+
 #include "SVF-LLVM/LLVMUtil.h"
 #include "SVF-LLVM/SVFIRBuilder.h"
 #include "Graphs/PTACallGraph.h"
-#include "Assignment-4.h"
+#include "Util/Options.h"
+#include "Util/CommandLine.h"
+
 
 using namespace std;
 
@@ -102,16 +106,26 @@ void Test4()
 int main(int argc, char ** argv)
 {
     int arg_num = 0;
-    char **arg_value = new char*[argc];
+    int extraArgc = 1;
+    char **arg_value = new char *[argc + extraArgc];
+    for (; arg_num < argc; ++arg_num) {
+        arg_value[arg_num] = argv[arg_num];
+    }
+    
+    // You may comment it to see the details of the analysis
+    arg_value[arg_num++] = (char*) "-stat=false";
+    
     std::vector<std::string> moduleNameVec;
-    LLVMUtil::processArguments(argc, argv, arg_num, arg_value, moduleNameVec);
-    llvm::cl::ParseCommandLineOptions(arg_num, arg_value,
-                                "Whole Program Points-to Analysis\n");
+    moduleNameVec = OptionBase::parseOptions(
+            arg_num, arg_value, "Teaching-Software-Analysis Assignment 4", "[options]"
+    );
     Test1();
     Test2();
     Test3();
     Test4();
     return 0;
 }
+
+
 
 
