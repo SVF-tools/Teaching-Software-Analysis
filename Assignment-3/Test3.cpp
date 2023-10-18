@@ -31,8 +31,9 @@
 #include "SVF-LLVM/LLVMUtil.h"
 #include "SVF-LLVM/SVFIRBuilder.h"
 #include "WPA/Andersen.h"
-#include "Util/SVFUtil.h"
-#include "Assignment-3.h"
+#include "Util/Options.h"
+#include "Util/CommandLine.h"
+
 
 void Test1()
 {
@@ -90,13 +91,21 @@ void Test()
 
 int main(int argc, char ** argv)
 {
-    // add  "args": ["-stat=false"] to launch.json file to eliminate the redundant program analysis details
+
     int arg_num = 0;
-    char **arg_value = new char*[argc];
+    int extraArgc = 1;
+    char **arg_value = new char *[argc + extraArgc];
+    for (; arg_num < argc; ++arg_num) {
+        arg_value[arg_num] = argv[arg_num];
+    }
+
+    // You may comment it to see the details of the analysis
+    arg_value[arg_num++] = (char*) "-stat=false";
+
     std::vector<std::string> moduleNameVec;
-    SVF::LLVMUtil::processArguments(argc, argv, arg_num, arg_value, moduleNameVec);
-    llvm::cl::ParseCommandLineOptions(arg_num, arg_value,
-                                "Whole Program Points-to Analysis\n");
+    moduleNameVec = OptionBase::parseOptions(
+            arg_num, arg_value, "Teaching-Software-Analysis Assignment 3", "[options]"
+    );
     Test();
     return 0;
 }
