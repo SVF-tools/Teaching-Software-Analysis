@@ -53,7 +53,7 @@ else()
 endif()
 set(SVF_HEADER "${SVF_DIR}/svf/include")
 set(SVF_LLVM_HEADER "${SVF_DIR}/svf-llvm/include")
-set(SVF_LIB "${SVF_BIN}/svf-llvm/libSvfLLVM.a")
+set(SVF_LIB "${SVF_BIN}/svf-llvm/libSvfLLVM.a" "${SVF_BIN}/svf/libSvfCore.a")
 set(SVF_BIN_HEADER "${SVF_BIN}/include")
 include_directories(${SVF_HEADER}
 	                ${SVF_LLVM_HEADER}
