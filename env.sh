@@ -5,7 +5,7 @@ sysOS=`uname -s`
 MajorLLVMVer=16
 LLVMVer=${MajorLLVMVer}.0.0
 
-LLVMHome="${LLVMVer}.obj"
+LLVMHome="LLVM-${LLVMVer}.obj"
 Z3Home="z3.obj"
 install_path=`npm root`
 
