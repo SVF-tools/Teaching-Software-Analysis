@@ -9,14 +9,7 @@ LLVMHome="llvm-${LLVMVer}.obj"
 Z3Home="z3.obj"
 install_path=`npm root`
 
-if [[ $sysOS == "Darwin" ]]
-then
-    export LLVM_DIR="$(brew --prefix llvm@${MajorLLVMVer})"
-elif [[ $sysOS == "Linux" ]]
-then
-    export LLVM_DIR=$install_path/$LLVMHome
-fi
-
+export LLVM_DIR=$install_path/$LLVMHome
 export Z3_DIR=$install_path/$Z3Home
 export SVF_DIR=$install_path/SVF
 export PATH=$SVF_DIR/Release-build/bin:$PATH
