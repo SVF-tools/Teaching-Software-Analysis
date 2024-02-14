@@ -1,4 +1,3 @@
-llvm_map_components_to_libnames(llvm_libs bitwriter core ipo irreader instcombine instrumentation target linker analysis scalaropts support )
 file (GLOB SOURCES
    *.cpp
 )
