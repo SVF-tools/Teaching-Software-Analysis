@@ -83,8 +83,19 @@ if(NOT LLVM_ENABLE_EH)
 endif()
 
 # Find specifically SVF 2.7 (change if needed) prioritising locations pointed to by $SVF_DIR
+if(CMAKE_BUILD_TYPE MATCHES "Debug")
+    MESSAGE (STATUS "building SVF in debug mode")
+    if (EXISTS "${SVF_DIR}/Debug-build")
+        set(SVF_BIN "${SVF_DIR}/Debug-build")
+    else()
+        set(SVF_BIN "${SVF_DIR}/Release-build")
+    endif()
+else()
+    MESSAGE (STATUS "building SVF in release mode")
+    set(SVF_BIN "${SVF_DIR}/Release-build")
+endif()
 
-find_package(SVF CONFIG HINTS ${SVF_DIR})
+find_package(SVF CONFIG HINTS ${SVF_DIR} ${SVF_BIN})
 message(STATUS "SVF STATUS:
     Found:                              ${SVF_FOUND}
     Version:                            ${SVF_VERSION}
@@ -124,6 +135,7 @@ else()
     message(FATAL_ERROR "SVF & LLVM RTTI support mismatch (SVF: ${SVF_ENABLE_RTTI}, LLVM: ${LLVM_ENABLE_RTTI})!")
 endif()
 
+set(SVF_LIB SvfLLVM SvfCore)
 # Search for system Z3 with CMake support first; otherwise try to find Z3 downloaded/installed by SVF's build script
 find_package(Z3 CONFIG PATHS ${Z3_DIR} ENV Z3_DIR)
 message(STATUS "Z3 STATUS:
