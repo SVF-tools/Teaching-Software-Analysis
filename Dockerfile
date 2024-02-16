@@ -36,7 +36,7 @@ RUN echo "Building SVF ..."
 RUN bash ./build.sh
 
 # Export SVF and llvm paths
-ENV PATH=${HOME}/SVF/Debug-build/bin:$PATH
+ENV PATH=${HOME}/SVF/Release-build/bin:$PATH
 ENV PATH=${HOME}/SVF/llvm-$llvm_version.obj/bin:$PATH
 ENV SVF_DIR=${HOME}/SVF
 ENV LLVM_DIR=${HOME}/SVF/llvm-$llvm_version.obj
