@@ -33,10 +33,10 @@ WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/SVF.git"
 WORKDIR ${HOME}/SVF
 RUN echo "Building SVF ..."
-RUN bash ./build.sh 
+RUN bash ./build.sh debug
 
 # Export SVF and llvm paths
-ENV PATH=${HOME}/SVF/Release-build/bin:$PATH
+ENV PATH=${HOME}/SVF/Debug-build/bin:$PATH
 ENV PATH=${HOME}/SVF/llvm-$llvm_version.obj/bin:$PATH
 ENV SVF_DIR=${HOME}/SVF
 ENV LLVM_DIR=${HOME}/SVF/llvm-$llvm_version.obj
@@ -47,5 +47,5 @@ WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/Teaching-Software-Analysis.git"
 WORKDIR ${HOME}/Teaching-Software-Analysis
 RUN echo "Building SVF-Teaching example ..."
-RUN cmake -DCMAKE_BUILD_TYPE=Release .
-RUN make
+RUN cmake -DCMAKE_BUILD_TYPE=Debug .
+RUN make -j8
