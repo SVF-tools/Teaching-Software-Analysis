@@ -41,12 +41,20 @@ using namespace std;
 int main(int argc, char ** argv) {
 
     int arg_num = 0;
-    char **arg_value = new char*[argc];
+    int extraArgc = 1;
+    char **arg_value = new char *[argc + extraArgc];
+    for (; arg_num < argc; ++arg_num) {
+        arg_value[arg_num] = argv[arg_num];
+    }
+    
+    // You may comment it to see the details of the analysis
+    arg_value[arg_num++] = (char*) "-stat=false";
+    
     std::vector<std::string> moduleNameVec;
     moduleNameVec = OptionBase::parseOptions(
-            arg_num, arg_value, "Teaching-Software-Analysis Assignment 4", "[options] <input-bitcode...>"
+            arg_num, arg_value, "Teaching-Software-Analysis Assignment 4", "[options]"
     );
-
+ 
     SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
 
     /// Build Program Assignment Graph (SVFIR or PAG)
