@@ -136,40 +136,27 @@ else()
 endif()
 
 set(SVF_LIB SvfLLVM SvfCore)
-# Search for system Z3 with CMake support first; otherwise try to find Z3 downloaded/installed by SVF's build script
-find_package(Z3 CONFIG PATHS ${Z3_DIR} ENV Z3_DIR)
+
+# Find Z3 and its include directory from the top-level include file
+find_library(
+        Z3_LIBRARIES
+        REQUIRED
+        NAMES z3
+        HINTS ${Z3_DIR} ENV Z3_DIR
+        PATH_SUFFIXES bin lib)
+find_path(
+        Z3_INCLUDES
+        REQUIRED
+        NAMES z3++.h
+        HINTS ${Z3_DIR} ENV Z3_DIR
+        PATH_SUFFIXES include z3)
 message(STATUS "Z3 STATUS:
-    Z3 found:                   ${Z3_FOUND}
-    Z3 version:                 ${Z3_VERSION}
-    Z3 libraries:               ${Z3_LIBRARIES}
-    Z3 include directory:       ${Z3_CXX_INCLUDE_DIRS}")
+  Z3 library file:        ${Z3_LIBRARIES}
+  Z3 include directory:   ${Z3_INCLUDES}")
 
-if(Z3_FOUND)
-    include_directories(SYSTEM ${Z3_CXX_INCLUDE_DIRS})
-else()
-    message(STATUS "No system Z3 CMake package found; using SVF's Z3 instance")
-    find_library(Z3_LIBRARIES
-            NAMES libz3.a libz3.so
-            HINTS ${Z3_DIR} ENV Z3_DIR
-            PATH_SUFFIXES bin
-    )
-    find_path(Z3_INCLUDES
-            NAMES z3++.h
-            HINTS ${Z3_DIR} ENV Z3_DIR
-            PATH_SUFFIXES include
-    )
-
-    # Ensure this Z3 instance was actually found
-    if(NOT Z3_LIBRARIES OR NOT Z3_INCLUDES)
-        message(FATAL_ERROR "Failed to find system Z3/SVF's Z3 instance!")
-    endif()
-
-    # Getting Z3 from GitHub places compiled library files in /bin, so add that as a search directory
-    include_directories(SYSTEM ${Z3_INCLUDES})
-    link_directories(${Z3_DIR}/bin)
-
-    # Actually link Z3 to the example binary
-endif()
+# Add the Z3 include directory and link the Z3 library to all targets
+link_libraries(${Z3_LIBRARIES})
+include_directories(SYSTEM ${Z3_INCLUDES})
 
 add_subdirectory(HelloWorld)
 add_subdirectory(CodeGraph)
