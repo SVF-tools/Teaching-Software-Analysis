@@ -7,9 +7,17 @@ project(Teaching-Software-Analysis
         LANGUAGES C CXX
 )
 
+# Check if the LLVM_DIR environment variable is defined and set it accordingly
 if (DEFINED LLVM_DIR)
     set(ENV{LLVM_DIR} "${LLVM_DIR}")
+elseif (DEFINED ENV{LLVM_DIR})
+    set(LLVM_DIR $ENV{LLVM_DIR})
+else()
+    message(FATAL_ERROR "\
+WARNING: The LLVM_DIR var was not set !\n\
+Please set this to environment variable to point to the LLVM_DIR directory or set this variable to cmake configuration\n(e.g. on linux: export LLVM_DIR=/path/to/LLVM/dir) \n or \n \n(make the project via: cmake -DLLVM_DIR=your_path_to_LLVM) ")
 endif()
+
 if (DEFINED ENV{LLVM_DIR})
     # We need to match the build environment for LLVM:
     # In particular, we need C++11 and the -fno-rtti flag
@@ -88,8 +96,10 @@ if (DEFINED SVF_DIR)
 elseif (DEFINED ENV{SVF_DIR})
     set(SVF_DIR $ENV{SVF_DIR})
 else()
-    message(FATAL_ERROR "SVF_DIR (root directory of SVF) is not specified" \
-                          "or found in the environment. Aborting.")
+    message(FATAL_ERROR "\
+WARNING: The SVF_DIR var was not set !\n\
+Please set this to environment variable to point to the SVF_DIR directory or set this variable to cmake configuration\n
+(e.g. on linux: export SVF_DIR=/path/to/SVF/dir) \n or \n \n(make the project via: cmake -DSVF_DIR=your_path_to_SVF) ")
 endif()
 
 # Find specifically SVF 2.7 (change if needed) prioritising locations pointed to by $SVF_DIR
