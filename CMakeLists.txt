@@ -82,6 +82,16 @@ if(NOT LLVM_ENABLE_EH)
     add_compile_options("-fno-exceptions")
 endif()
 
+# Check if the SVF_DIR environment variable is defined and set it accordingly
+if (DEFINED SVF_DIR)
+    set(ENV{SVF_DIR} "${SVF_DIR}")
+elseif (DEFINED ENV{SVF_DIR})
+    set(SVF_DIR $ENV{SVF_DIR})
+else()
+    message(FATAL_ERROR "SVF_DIR (root directory of SVF) is not specified" \
+                          "or found in the environment. Aborting.")
+endif()
+
 # Find specifically SVF 2.7 (change if needed) prioritising locations pointed to by $SVF_DIR
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
     MESSAGE (STATUS "building SVF in debug mode")
