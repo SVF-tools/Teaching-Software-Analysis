@@ -1,8 +1,8 @@
-FROM ubuntu:23.04
+FROM ubuntu:24.04
 
 # Stop ubuntu-20 interactive options.
 ENV DEBIAN_FRONTEND noninteractive
-
+ARG TARGETPLATFORM
 # Stop script if any individual command fails.
 RUN set -e
 
@@ -13,12 +13,26 @@ ENV llvm_version=16.0.0
 ENV HOME=/home/SVF-tools
 
 # Define dependencies.
-ENV lib_deps="cmake g++ gcc git zlib1g-dev libncurses5-dev libtinfo5 build-essential libssl-dev libpcre2-dev zip vim"
-ENV build_deps="wget xz-utils git gdb tcl python-is-python3"
+ENV lib_deps="cmake g++ gcc git zlib1g-dev libncurses5-dev libtinfo6 build-essential libssl-dev libpcre2-dev zip libzstd-dev"
+ENV build_deps="wget xz-utils git tcl software-properties-common"
 
 # Fetch dependencies.
 RUN apt-get update --fix-missing
 RUN apt-get install -y $build_deps $lib_deps
+
+# Add deadsnakes PPA for multiple Python versions 
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get update
+RUN set -ex; \
+    if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+        apt-get update && apt-get install -y python3.10-dev \
+        && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1; \
+    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+        apt-get update && apt-get install -y python3.8-dev \
+        && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1; \
+    else \
+        echo "Unsupported platform: $TARGETPLATFORM" && exit 1; \
+    fi
 
 # Fetch and build SVF source.
 RUN echo "Downloading LLVM and building SVF to " ${HOME}
