@@ -73,11 +73,8 @@ void TaintGraphTraversal::taintChecking(){
     ander->analyze();
     for(const CallICFGNode* src : identifySources()){
         for(const CallICFGNode* snk : identifySinks()){
-            vector<const ICFGNode*> path;
-            set<const ICFGNode*> visited;
-            std::stack<const SVFInstruction *>callstack;
             if(aliasCheck(src,snk))
-                DFS(visited, path, callstack, src, snk);
+                reachability(src, snk);
         }
     }
 }
@@ -88,9 +85,10 @@ void TaintGraphTraversal::taintChecking(){
 /// bonus:  dump and append each program path to a `ICFGPaths.txt` in the form of
 /// ‘{ln: number cl: number, fl:name} -> {ln: number, cl: number, fl: name} -> {ln:number, cl: number, fl: name}
 /// ln : line number  cl: column number fl:file name  for further learning, you can review the code in SVF, SVFUtil
-void TaintGraphTraversal::printICFGPath(std::vector<const ICFGNode *> &path){
+void TaintGraphTraversal::collectICFGPath(std::vector<unsigned> &path){
 
 }
+
 
 // TODO: Implement your code to parse the two lines from `SrcSnk.txt` in the form of 
 // line 1 for sources  "{ api1 api2 api3 }"

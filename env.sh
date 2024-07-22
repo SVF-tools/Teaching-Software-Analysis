@@ -1,27 +1,35 @@
 #!/bin/bash
-  
+
+# Get the current working directory and store it in PROJECTHOME
 PROJECTHOME=$(pwd)
+
+# Detect the operating system type and store it in sysOS
 sysOS=`uname -s`
+
+# Set the major version of LLVM
 MajorLLVMVer=16
+
+# Define the full LLVM version
 LLVMVer=${MajorLLVMVer}.0.0
 
+# Set the home directories for LLVM and Z3
 LLVMHome="llvm-${LLVMVer}.obj"
 Z3Home="z3.obj"
-install_path=`npm root`
 
-export LLVM_DIR=$install_path/$LLVMHome
-export Z3_DIR=$install_path/$Z3Home
-export SVF_DIR=$install_path/SVF
+# Change this to your SVF root directory
+svf_root=`pwd`/../SVF
+
+# Export the paths for the LLVM, Z3, and SVF directories
+export LLVM_DIR=$svf_root/$LLVMHome
+export Z3_DIR=$svf_root/$Z3Home
+export SVF_DIR=$svf_root
+
+# Update the PATH to include the binary directories for SVF, LLVM, and the project
 export PATH=$SVF_DIR/Release-build/bin:$PATH
 export PATH=$LLVM_DIR/bin:$PATH
 export PATH=$PROJECTHOME/bin:$PATH
 
-echo "export LLVM_DIR=$LLVM_DIR" >> ~/.bashrc
-echo "export Z3_DIR=$Z3_DIR" >> ~/.bashrc
-echo "export SVF_DIR=$SVF_DIR" >> ~/.bashrc
-echo "export PATH=$SVF_DIR/Release-build/bin:$LLVM_DIR/bin:$PROJECTHOME/bin:$PATH" >> ~/.bashrc
-
-
-echo "LLVM_DIR="$LLVM_DIR
+# Print the paths to the terminal for verification
 echo "SVF_DIR="$SVF_DIR
+echo "LLVM_DIR="$LLVM_DIR
 echo "Z3_DIR="$Z3_DIR

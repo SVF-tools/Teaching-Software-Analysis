@@ -1,4 +1,4 @@
-//===- Software-Analysis-Teaching Assignment 2-------------------------------------//
+//===- SVF-Teaching Assignment 2-------------------------------------//
 //
 //     SVF: Static Value-Flow Analysis Framework for Source Code
 //
@@ -22,7 +22,7 @@
 /*
  // Software-Analysis-Teaching  Assignment 2 : Source Sink ICFG DFS Traversal
  //
- // 
+ //
  */
 #ifndef ASSIGNMENT_2_H_
 #define ASSIGNMENT_2_H_
@@ -33,17 +33,19 @@ using namespace SVF;
 
 class ICFGTraversal
 {
+public:
+    typedef std::vector<const SVFInstruction*> CallStack;
 
 public:
 
     ICFGTraversal(SVFIR *p) : pag(p) {}
 
     /// TODO: to be implemented
-    virtual void printICFGPath(std::vector<const ICFGNode *> &path);
+    virtual void collectICFGPath(std::vector<unsigned> &path);
 
     /// TODO: to be implemented context sensitive DFS
-    void DFS(std::set<const ICFGNode *> &visited, std::vector<const ICFGNode *> &path, std::stack<const SVFInstruction *> &callstack, const ICFGNode *src, const ICFGNode *dst);
-    
+    void reachability(const ICFGNode *src, const ICFGNode *dst);
+
     // Identify source nodes on ICFG (i.e., call instruction with its callee function named 'src')
     virtual std::set<const CallICFGNode *> &identifySources()
     {
@@ -78,8 +80,13 @@ public:
 protected:
     std::set<const CallICFGNode *> sources;
     std::set<const CallICFGNode *> sinks;
+    Set<std::pair<const ICFGNode*, CallStack>> visited;
+    CallStack callstack;
+
+    SVFIR* pag;
     std::set<std::string> paths;
-    SVFIR *pag;
+    std::vector<unsigned> path;
+
 };
 
 #endif

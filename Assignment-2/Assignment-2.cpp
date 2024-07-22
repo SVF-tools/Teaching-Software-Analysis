@@ -33,18 +33,15 @@ using namespace std;
 
 /// TODO: print each path once this method is called, and
 /// add each path as a string into std::set<std::string> paths
-/// Print the path in the format "START: 1->2->4->5->END", where -> indicate an ICFGEdge connects two ICFGNode IDs
+/// Print the path in the format "START->1->2->4->5->END", where -> indicate an ICFGEdge connects two ICFGNode IDs
 
-void ICFGTraversal::printICFGPath(std::vector<const ICFGNode *> &path)
-{
-    
-    
+void ICFGTraversal::collectICFGPath(std::vector<unsigned> &path){
 
 }
 
 
 /// TODO: Implement your context-sensitive ICFG traversal here to traverse each program path (once for any loop) from src to dst
-void ICFGTraversal::DFS(std::set<const ICFGNode *> &visited, std::vector<const ICFGNode *> &path, std::stack<const SVFInstruction*> &callstack, const ICFGNode *src, const ICFGNode *dst)
+void ICFGTraversal::reachability(const ICFGNode *src, const ICFGNode *dst)
 {
 
 

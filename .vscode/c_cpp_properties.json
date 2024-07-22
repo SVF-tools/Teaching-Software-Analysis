@@ -3,16 +3,14 @@
         {
             "name": "Linux",
             "includePath": [
-                "/usr/include/**",
                 "/usr/local/include/**",
-                "/home/SVF-tools/SVF/**",
                 "${workspaceFolder}/**",
-                "/home/SVF-tools/SVF/llvm-16.0.0.obj/**"
+                "../SVF/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",
             "cStandard": "gnu11",
-            "cppStandard": "gnu++14",
+            "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-gcc-x64"
         }
     ],
