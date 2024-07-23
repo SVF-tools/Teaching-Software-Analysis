@@ -6,19 +6,19 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    env:
-      XCODE_VERSION: '15.3.0'
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
+    env:
+      XCODE_VERSION: '15.3.0'
     steps:
       # checkout the repo
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          
-      # setup the environment 
+
+      # setup the mac/ubuntu environment
       - name: mac-setup
         if: runner.os == 'macOS'
         uses: maxim-lobanov/setup-xcode@v1
@@ -33,16 +33,20 @@ jobs:
           sudo apt-get update
           sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
           sudo apt-get update
-          sudo apt-get install cmake gcc g++ nodejs doxygen graphviz
-          
+          sudo apt-get install cmake gcc g++ nodejs doxygen graphviz lcov libncurses5-dev libtinfo5 libzstd-dev
+
       # install llvm and svf
       - name: env-setup
         run: |
           npm install svf-lib
-          
-      # build current repo
-      - name: build-svf
+      # set SVF_DIR, LLVM_DIR and Z3_DIR and build
+      - name: build
         run: |
-         source $GITHUB_WORKSPACE/env.sh
-         cmake .
-         make 
+          export SVF_DIR=$(npm root)/SVF
+          export LLVM_DIR=$(npm root)/llvm-16.0.0.obj
+          export Z3_DIR=$(npm root)/z3.obj
+          echo "SVF_DIR="$SVF_DIR
+          echo "LLVM_DIR="$LLVM_DIR
+          echo "Z3_DIR="$Z3_DIR
+          cmake .
+          make

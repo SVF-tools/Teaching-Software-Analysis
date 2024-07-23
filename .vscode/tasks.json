@@ -4,7 +4,7 @@
             "label": "C/C++: cpp build active file",
             "type": "shell",
             // if you run SVF-Teaching not in docker container, you need to change the LLVM_DIR and SVF_DIR
-            "command": "cmake -DCMAKE_BUILD_TYPE=Debug -DSVF_DIR=/home/SVF-tools/SVF -DLLVM_DIR=/home/SVF-tools/SVF/llvm-16.0.0.obj -DZ3_DIR=/home/SVF-tools/SVF/z3.obj . && make",
+            "command": "cmake -DCMAKE_BUILD_TYPE=Debug -DSVF_DIR=../SVF -DLLVM_DIR=../SVF/llvm-16.0.0.obj -DZ3_DIR=../SVF/z3.obj . && make",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -17,4 +17,3 @@
     ],
     "version": "2.0.0"
 }
-

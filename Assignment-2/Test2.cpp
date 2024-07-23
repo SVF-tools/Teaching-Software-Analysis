@@ -42,18 +42,15 @@ void Test1()
     ICFG *icfg = pag->getICFG();
     // If you want to test your own case, plase change the dump name
     icfg->dump("./Assignment-2/testcase/dot/test1.ll.icfg");
-    std::vector<const ICFGNode *> path;
-    std::stack<const SVFInstruction *>callstack;
-    std::set<const ICFGNode *> visited;
     ICFGTraversal *gt = new ICFGTraversal(pag);
     for (const CallICFGNode *src : gt->identifySources())
     {
         for (const CallICFGNode *snk : gt->identifySinks())
         {
-            gt->DFS(visited, path, callstack, src, snk);
+            gt->reachability(src, snk);
         }
     }
-    std::set<std::string> expected = {"START: 16->1->2->END"};
+    std::set<std::string> expected = {"START->16->1->2->END"};
     assert(expected == gt->getPaths() && "test1 failed!");
     std::cout << "test1 passed!" << "\n";
     SVFIR::releaseSVFIR();
@@ -74,19 +71,16 @@ void Test2()
     ICFG *icfg = pag->getICFG();
     // If you want to test your own case, plase change the dump name
     icfg->dump("./Assignment-2/testcase/dot/test2.ll.icfg");
-    std::vector<const ICFGNode *> path;
-    std::set<const ICFGNode *> visited;
-    std::stack<const SVFInstruction *>callstack;
     ICFGTraversal *gt = new ICFGTraversal(pag);
     for (const CallICFGNode *src : gt->identifySources())
     {
         for (const CallICFGNode *snk : gt->identifySinks())
         {
-            gt->DFS(visited, path, callstack, src, snk);
+            gt->reachability(src, snk);
         }
     }
     
-    std::set<std::string> expected = {"START: 5->6->7->8->11->1->2->3->12->15->END", "START: 5->6->7->8->9->1->2->3->10->13->END"};
+    std::set<std::string> expected = {"START->5->6->7->8->11->1->2->3->12->15->END", "START->5->6->7->8->9->1->2->3->10->13->END"};
     assert(expected == gt->getPaths() && "test2 failed!");
     std::cout << "test2 passed!" << "\n";
     LLVMModuleSet::releaseLLVMModuleSet();

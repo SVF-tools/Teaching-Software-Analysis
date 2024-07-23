@@ -37,13 +37,12 @@ using namespace std;
 
 // TODO: Implement your Andersen's Algorithm here
 void AndersenPTA::solveWorklist(){
-        processAllAddr();
+    processAllAddr();
 
-        // Keep solving until workList is empty.
-        while (!isWorklistEmpty())
-        {
-            
-        }
+    // Keep solving until workList is empty.
+    while (!isWorklistEmpty()) {
+
+    }
 
 }
 

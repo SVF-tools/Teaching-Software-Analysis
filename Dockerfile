@@ -3,6 +3,7 @@ FROM ubuntu:24.04
 # Stop ubuntu-20 interactive options.
 ENV DEBIAN_FRONTEND noninteractive
 ARG TARGETPLATFORM
+
 # Stop script if any individual command fails.
 RUN set -e
 
@@ -14,13 +15,13 @@ ENV HOME=/home/SVF-tools
 
 # Define dependencies.
 ENV lib_deps="cmake g++ gcc git zlib1g-dev libncurses5-dev libtinfo6 build-essential libssl-dev libpcre2-dev zip libzstd-dev"
-ENV build_deps="wget xz-utils git tcl software-properties-common"
+ENV build_deps="wget xz-utils git gdb tcl software-properties-common"
 
 # Fetch dependencies.
 RUN apt-get update --fix-missing
 RUN apt-get install -y $build_deps $lib_deps
 
-# Add deadsnakes PPA for multiple Python versions 
+# Add deadsnakes PPA for multiple Python versions
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
 RUN set -ex; \
@@ -50,10 +51,11 @@ ENV LLVM_DIR=${HOME}/SVF/llvm-$llvm_version.obj
 ENV Z3_DIR=${HOME}/SVF/z3.obj
 RUN ln -s ${Z3_DIR}/bin/libz3.so ${Z3_DIR}/bin/libz3.so.4
 
-# Fetch and build Teaching-Software-Analysis example.
+# Fetch and build
 WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/Teaching-Software-Analysis.git"
 WORKDIR ${HOME}/Teaching-Software-Analysis
-RUN echo "Building SVF-Teaching example ..."
+RUN echo "Building ..."
+RUN sed -i 's/lldb/gdb/g' ${HOME}/Teaching-Software-Analysis/.vscode/launch.json
 RUN cmake -DCMAKE_BUILD_TYPE=MinSizeRel .
 RUN make -j8

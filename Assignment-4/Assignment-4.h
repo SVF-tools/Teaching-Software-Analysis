@@ -46,7 +46,7 @@ public:
     std::set<const CallICFGNode *>& identifySinks();
 
     // TODO: implement the path printing
-    void printICFGPath(std::vector<const ICFGNode *> &path);
+    void collectICFGPath(std::vector<unsigned> &path);
 
     // TODO: Source and sink function names read from SrcSnk.txt
     void readSrcSnkFromFile(const std::string& filename);
