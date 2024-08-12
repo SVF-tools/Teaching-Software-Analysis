@@ -1,8 +1,19 @@
+# Build
 BUILD/
 build/
-**/CMakeFiles
 bin/
 *.cmake
+
+# CMake https://github.com/github/gitignore/blob/main/CMake.gitignore
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
 Makefile
 cmake_install.cmake
-CMakeCache.txt
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+CMakeUserPresets.json
