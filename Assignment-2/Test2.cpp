@@ -87,10 +87,42 @@ void Test2()
     SVFIR::releaseSVFIR();
     delete gt;
 }
+
+void Test3()
+{
+    //    Your current workingspace dir}/Assignment-2/testCase/
+    std::vector<std::string> moduleNameVec = {"./Assignment-2/testcase/bc/test3.ll"};
+
+    SVFModule *svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
+
+    /// Build Program Assignment Graph (SVFIR)
+    SVFIRBuilder builder(svfModule);
+    SVFIR *pag = builder.build();
+    ICFG *icfg = pag->getICFG();
+    // If you want to test your own case, plase change the dump name
+    icfg->dump("./Assignment-2/testcase/dot/test3.ll.icfg");
+    ICFGTraversal *gt = new ICFGTraversal(pag);
+    for (const CallICFGNode *src : gt->identifySources())
+    {
+        for (const CallICFGNode *snk : gt->identifySinks())
+        {
+            gt->reachability(src, snk);
+        }
+    }
+
+    std::set<std::string> expected = {"START->10->11->12->13->4->5->6->7->14->15->4->5->6->7->16->17->18->END"};
+    assert(expected == gt->getPaths() && "test3 failed!");
+    std::cout << "test2 passed!" << "\n";
+    LLVMModuleSet::releaseLLVMModuleSet();
+    SVFIR::releaseSVFIR();
+    delete gt;
+}
+
 void Test()
 {
     Test1();
     Test2();
+    Test3();
 }
 
 int main()

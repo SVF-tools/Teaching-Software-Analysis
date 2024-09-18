@@ -34,7 +34,7 @@ using namespace SVF;
 class ICFGTraversal
 {
 public:
-    typedef std::vector<const SVFInstruction*> CallStack;
+    typedef std::vector<const ICFGNode*> CallStack;
 
 public:
 
@@ -51,7 +51,7 @@ public:
     {
         for (const CallICFGNode *cs : pag->getCallSiteSet())
         {
-            const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
+            const SVFFunction *fun = cs->getCalledFunction();
             if (fun->getName() == "source")
             {
                 sources.insert(cs);
@@ -65,7 +65,7 @@ public:
     {
         for (const CallICFGNode *cs : pag->getCallSiteSet())
         {
-            const SVFFunction *fun = SVFUtil::getCallee(cs->getCallSite());
+            const SVFFunction *fun = cs->getCalledFunction();
             if (fun->getName() == "sink")
             {
                 sinks.insert(cs);
