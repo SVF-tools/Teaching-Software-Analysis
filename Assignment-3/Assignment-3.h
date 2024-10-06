@@ -48,10 +48,10 @@ private:
     void processAllAddr();
 
     // To be implemented
-    virtual void solveWorklist();
+    virtual void solveWorklist() override;
 
     /// Add copy edge on constraint graph
-    virtual bool addCopyEdge(SVF::NodeID src, SVF::NodeID dst)
+    virtual bool addCopyEdge(SVF::NodeID src, SVF::NodeID dst) override
     {
         if (consCG->addCopyCGEdge(src, dst))
             return true;
