@@ -51,7 +51,7 @@ public:
     {
         for (const CallICFGNode *cs : pag->getCallSiteSet())
         {
-            const SVFFunction *fun = cs->getCalledFunction();
+            const FunObjVar *fun = cs->getCalledFunction();
             if (fun->getName() == "source")
             {
                 sources.insert(cs);
@@ -65,7 +65,7 @@ public:
     {
         for (const CallICFGNode *cs : pag->getCallSiteSet())
         {
-            const SVFFunction *fun = cs->getCalledFunction();
+            const FunObjVar *fun = cs->getCalledFunction();
             if (fun->getName() == "sink")
             {
                 sinks.insert(cs);
