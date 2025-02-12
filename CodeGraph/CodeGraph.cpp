@@ -61,11 +61,11 @@ int main(int argc, char ** argv) {
     SVFIRBuilder builder(svfModule);
     SVFIR *pag = builder.build();
     //dump pag
-    pag->dump(svfModule->getModuleIdentifier() + ".pag");
+    pag->dump(PAG::getPAG()->getModuleIdentifier() + ".pag");
     /// ICFG
     ICFG *icfg = pag->getICFG();
     //dump icfg
-    icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
+    icfg->dump(PAG::getPAG()->getModuleIdentifier() + ".icfg");
 
         // iterate each ICFGNode on ICFG
     for(ICFG::iterator i = icfg->begin(); i != icfg->end(); i++)
