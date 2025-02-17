@@ -15,7 +15,7 @@ ENV HOME=/home/SVF-tools
 
 # Define dependencies.
 ENV lib_deps="cmake g++ gcc git zlib1g-dev libncurses5-dev libtinfo6 build-essential libssl-dev libpcre2-dev zip libzstd-dev"
-ENV build_deps="wget xz-utils git gdb tcl software-properties-common gdb"
+ENV build_deps="wget xz-utils git gdb tcl software-properties-common"
 
 # Fetch dependencies.
 RUN apt-get update --fix-missing
