@@ -39,9 +39,9 @@ using namespace std;
 void Test1()
 {
     cout << "\n running test1: " << endl;
-    SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test1.ll"});
+    LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test1.ll"});
     /// Build Program Assignment Graph (SVFIR)
-    SVF::SVFIRBuilder builder(svfModule);
+    SVF::SVFIRBuilder builder;
     SVF::SVFIR *pag = builder.build();
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
     taint->taintChecking();
@@ -54,9 +54,9 @@ void Test1()
 void Test2()
 {
     cout << "\n running test2 :" << endl;
-    SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test2.ll"});
+    LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test2.ll"});
     /// Build Program Assignment Graph (SVFIR)
-    SVF::SVFIRBuilder builder(svfModule);
+    SVF::SVFIRBuilder builder;
     SVF::SVFIR *pag = builder.build();
 
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
@@ -71,9 +71,9 @@ void Test2()
 void Test3()
 {
     cout << "\n running test3 :" << endl;
-    SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test3.ll"});
+    LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test3.ll"});
     /// Build Program Assignment Graph (SVFIR)
-    SVF::SVFIRBuilder builder(svfModule);
+    SVF::SVFIRBuilder builder;
     SVF::SVFIR *pag = builder.build();
 
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
@@ -89,9 +89,9 @@ void Test3()
 void Test4()
 {
     cout << "\n running test4 :" << endl;
-    SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test4.ll"});
+    LLVMModuleSet::getLLVMModuleSet()->buildSVFModule({"./Assignment-4/testcase/bc/test4.ll"});
     /// Build Program Assignment Graph (SVFIR)
-    SVF::SVFIRBuilder builder(svfModule);
+    SVF::SVFIRBuilder builder;
     SVF::SVFIR *pag = builder.build();
 
     TaintGraphTraversal* taint = new TaintGraphTraversal(pag);
