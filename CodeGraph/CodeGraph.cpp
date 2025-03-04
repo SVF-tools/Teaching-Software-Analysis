@@ -55,10 +55,10 @@ int main(int argc, char ** argv) {
             arg_num, arg_value, "Teaching-Software-Analysis Assignment 4", "[options]"
     );
  
-    SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
+    LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
 
     /// Build Program Assignment Graph (SVFIR or PAG)
-    SVFIRBuilder builder(svfModule);
+    SVFIRBuilder builder;
     SVFIR *pag = builder.build();
     //dump pag
     pag->dump(PAG::getPAG()->getModuleIdentifier() + ".pag");

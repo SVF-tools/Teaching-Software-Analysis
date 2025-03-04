@@ -34,10 +34,10 @@ void Test1()
 
     std::vector<std::string> moduleNameVec = {"./Assignment-2/testcase/bc/test1.ll"};
 
-    SVFModule *svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
+    LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
  
     /// Build Program Assignment Graph (SVFIR)
-    SVFIRBuilder builder(svfModule);
+    SVFIRBuilder builder;
     SVFIR *pag = builder.build();
     ICFG *icfg = pag->getICFG();
     // If you want to test your own case, plase change the dump name
@@ -63,10 +63,10 @@ void Test2()
     //    Your current workingspace dir}/Assignment-2/testCase/
     std::vector<std::string> moduleNameVec = {"./Assignment-2/testcase/bc/test2.ll"};
 
-    SVFModule *svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
+    LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
  
     /// Build Program Assignment Graph (SVFIR)
-    SVFIRBuilder builder(svfModule);
+    SVFIRBuilder builder;
     SVFIR *pag = builder.build();
     ICFG *icfg = pag->getICFG();
     // If you want to test your own case, plase change the dump name
@@ -93,10 +93,10 @@ void Test3()
     //    Your current workingspace dir}/Assignment-2/testCase/
     std::vector<std::string> moduleNameVec = {"./Assignment-2/testcase/bc/test3.ll"};
 
-    SVFModule *svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
+    LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
 
     /// Build Program Assignment Graph (SVFIR)
-    SVFIRBuilder builder(svfModule);
+    SVFIRBuilder builder;
     SVFIR *pag = builder.build();
     ICFG *icfg = pag->getICFG();
     // If you want to test your own case, plase change the dump name
