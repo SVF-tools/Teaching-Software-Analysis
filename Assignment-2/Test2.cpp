@@ -53,8 +53,9 @@ void Test1()
     std::set<std::string> expected = {"START->17->1->7->END"};
     assert(expected == gt->getPaths() && "test1 failed!");
     std::cout << "test1 passed!" << "\n";
-    SVFIR::releaseSVFIR();
-    LLVMModuleSet::releaseLLVMModuleSet();
+    SVF::LLVMModuleSet::releaseLLVMModuleSet();
+    SVF::SVFIR::releaseSVFIR();
+    NodeIDAllocator::unset();
     delete gt;
 }
 
@@ -83,8 +84,9 @@ void Test2()
     std::set<std::string> expected = {"START->6->7->8->9->10->1->5->2->11->14->END", "START->6->7->8->9->12->1->5->2->13->16->END"};
     assert(expected == gt->getPaths() && "test2 failed!");
     std::cout << "test2 passed!" << "\n";
-    LLVMModuleSet::releaseLLVMModuleSet();
-    SVFIR::releaseSVFIR();
+    SVF::LLVMModuleSet::releaseLLVMModuleSet();
+    SVF::SVFIR::releaseSVFIR();
+    NodeIDAllocator::unset();
     delete gt;
 }
 
@@ -113,8 +115,9 @@ void Test3()
     std::set<std::string> expected = {"START->11->12->13->14->3->8->9->4->15->16->3->8->9->4->17->18->19->END"};
     assert(expected == gt->getPaths() && "test3 failed!");
     std::cout << "test3 passed!" << "\n";
-    LLVMModuleSet::releaseLLVMModuleSet();
-    SVFIR::releaseSVFIR();
+    SVF::LLVMModuleSet::releaseLLVMModuleSet();
+    SVF::SVFIR::releaseSVFIR();
+    NodeIDAllocator::unset();
     delete gt;
 }
 
