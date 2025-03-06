@@ -49,6 +49,7 @@ void Test1()
     delete andersenPTA; 
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::SVFIR::releaseSVFIR();
+    NodeIDAllocator::unset();
 }
 
 void Test2()
@@ -65,6 +66,7 @@ void Test2()
     delete andersenPTA; 
     SVF::SVFIR::releaseSVFIR();
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
+    NodeIDAllocator::unset();
 }
 
 void Test3()
@@ -80,6 +82,7 @@ void Test3()
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::SVFIR::releaseSVFIR();
     delete andersenPTA; 
+    NodeIDAllocator::unset();
 }
 void Test()
 {

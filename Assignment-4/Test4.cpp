@@ -50,6 +50,7 @@ void Test1()
     cout << "\n test1 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::SVFIR::releaseSVFIR();
+    NodeIDAllocator::unset();
 }
 void Test2()
 {
@@ -66,6 +67,7 @@ void Test2()
     cout << "\n test2 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::SVFIR::releaseSVFIR();
+    NodeIDAllocator::unset();
 }
 
 void Test3()
@@ -83,7 +85,7 @@ void Test3()
     cout << "\n test3 passed !" << endl;
     SVF::SVFIR::releaseSVFIR();
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
-
+    NodeIDAllocator::unset();
 }
 
 void Test4()
@@ -102,6 +104,7 @@ void Test4()
     cout << "\n test4 passed !" << endl;
     SVF::LLVMModuleSet::releaseLLVMModuleSet();
     SVF::SVFIR::releaseSVFIR();
+    NodeIDAllocator::unset();
 }
 int main(int argc, char ** argv)
 {
