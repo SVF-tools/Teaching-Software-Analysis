@@ -6,8 +6,8 @@
             "type": "cppdbg",
             "request": "launch",
             // Please change to the executable of your current lab or assignment
-            "program": "${workspaceFolder}/bin/hello",
-            "args": [], // may input the test llvm bc file or other options and flags the program may use
+            "program": "${workspaceFolder}/bin/svfir",
+            "args": [${workspaceFolder}/SVFIR/example.ll], // may input the test llvm bc file or other options and flags the program may use
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "C/C++: cpp build active file",
             "MIMode": "lldb",
