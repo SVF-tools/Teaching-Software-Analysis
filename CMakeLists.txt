@@ -23,9 +23,9 @@ if (DEFINED ENV{LLVM_DIR})
     # Set the C++ standard to C++17 and configure compiler flags based on the build type
     set(CMAKE_CXX_STANDARD 17)
     if(CMAKE_BUILD_TYPE MATCHES "Debug")
-        set(CMAKE_CXX_FLAGS "-fPIC -std=gnu++17 -O0 -fno-rtti -Wno-deprecated")
+        set(CMAKE_CXX_FLAGS "-fPIC -std=gnu++17 -O0 -fno-rtti -Wno-deprecated -Werror")
     else()
-        set(CMAKE_CXX_FLAGS "-fPIC -std=gnu++17 -O3 -fno-rtti -Wno-deprecated")
+        set(CMAKE_CXX_FLAGS "-fPIC -std=gnu++17 -O3 -fno-rtti -Wno-deprecated -Werror")
     endif()
     set(CMAKE_C_FLAGS "-fPIC")
     # Check if compiler is GNU and version is less than 9
