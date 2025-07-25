@@ -1,4 +1,4 @@
-//===- Software-Analysis-Teaching Assignment 2-------------------------------------//
+//===- SVF-Teaching Assignment 2-------------------------------------//
 //
 //     SVF: Static Value-Flow Analysis Framework for Source Code
 //
@@ -20,7 +20,7 @@
 //
 //===-----------------------------------------------------------------------===//
 /*
- // Software-Analysis-Teaching Assignment 2 : Source Sink ICFG DFS Traversal
+ // SVF-Teaching Assignment 2 : Source Sink ICFG DFS Traversal
  //
  // 
  */
@@ -36,13 +36,13 @@ using namespace std;
 /// Print the path in the format "START->1->2->4->5->END", where -> indicate an ICFGEdge connects two ICFGNode IDs
 
 void ICFGTraversal::collectICFGPath(std::vector<unsigned> &path){
-
+    
 }
 
 
 /// TODO: Implement your context-sensitive ICFG traversal here to traverse each program path (once for any loop) from src to dst
 void ICFGTraversal::reachability(const ICFGNode *src, const ICFGNode *dst)
 {
-
+    
 
 }

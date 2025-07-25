@@ -1,32 +1,15 @@
 ; ModuleID = 'test2.ll'
-source_filename = "test2.c"
+source_filename = "/home/runner/work/SVF-Teaching-Solutions/SVF-Teaching-Solutions/Assignment-2/testcase/src/test2.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
-
-; Function Attrs: noinline nounwind uwtable
-define dso_local i32 @bar(i32 noundef %s) #0 {
-entry:
-  ret i32 %s
-}
 
 ; Function Attrs: noinline nounwind uwtable
 define dso_local i32 @main() #0 {
 entry:
   %call = call i32 (...) @source()
-  %cmp = icmp sgt i32 %call, 0
-  br i1 %cmp, label %if.then, label %if.else
-
-if.then:                                          ; preds = %entry
-  %call1 = call i32 @bar(i32 noundef %call)
+  %call1 = call i32 (...) @source()
+  call void @sink(i32 noundef %call)
   call void @sink(i32 noundef %call1)
-  br label %if.end
-
-if.else:                                          ; preds = %entry
-  %call2 = call i32 @bar(i32 noundef %call)
-  call void @sink(i32 noundef %call2)
-  br label %if.end
-
-if.end:                                           ; preds = %if.else, %if.then
   ret i32 0
 }
 

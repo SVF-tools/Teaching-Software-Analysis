@@ -1,4 +1,5 @@
-//===- Software-Analysis-Teaching Assignment 1-------------------------------------//
+
+//===- SVF-Teaching Assignment 1-------------------------------------//
 //
 //     SVF: Static Value-Flow Analysis Framework for Source Code
 //
@@ -21,7 +22,7 @@
 //===-----------------------------------------------------------------------===//
 
 /*
- // Software-Analysis-Teaching Assignment 1 : Graph Traversal
+ // SVF-Teaching Assignment 1 : Graph Traversal
  //
  // 
  */
@@ -35,11 +36,11 @@ using namespace std;
 /// Print the path in the format "START: 1->2->4->5->END", where -> indicate an edge connecting two node IDs
 void GraphTraversal::printPath(std::vector<const Node *> &path)
 {
-
+    
 };
 
 /// TODO: Implement your depth first search here to traverse each program path (once for any loop) from src to dst
 void GraphTraversal::DFS(set<const Node *> &visited, vector<const Node *> &path, const Node *src, const Node *dst)
 {
-
+    
 }

@@ -1,4 +1,4 @@
-//===- Software-Analysis-Teaching Assignment 1-------------------------------------//
+//===- SVF-Teaching Assignment 1-------------------------------------//
 //
 //     SVF: Static Value-Flow Analysis Framework for Source Code
 //
@@ -21,7 +21,7 @@
 //===-----------------------------------------------------------------------===//
 
 /*
- // Software-Analysis-Teaching Assignment 1 : Graph Traversal
+ // SVF-Teaching Assignment 1 : Graph Traversal
  //
  // 
  */

@@ -20,9 +20,9 @@
 //
 //===-----------------------------------------------------------------------===//
 /*
- // Software-Analysis-Teaching  Assignment 2 : Source Sink ICFG DFS Traversal
+ // SVF-Teaching Assignment 2 : Source Sink ICFG DFS Traversal
  //
- //
+ // 
  */
 #ifndef ASSIGNMENT_2_H_
 #define ASSIGNMENT_2_H_
@@ -45,7 +45,7 @@ public:
 
     /// TODO: to be implemented context sensitive DFS
     void reachability(const ICFGNode *src, const ICFGNode *dst);
-
+    
     // Identify source nodes on ICFG (i.e., call instruction with its callee function named 'src')
     virtual std::set<const CallICFGNode *> &identifySources()
     {

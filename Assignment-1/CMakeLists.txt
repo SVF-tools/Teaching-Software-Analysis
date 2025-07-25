@@ -1,3 +1,7 @@
-add_executable(assign-1 Assignment-1.cpp Test1.cpp)
-set_target_properties( assign-1 PROPERTIES
-                       RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin )
+cmake_minimum_required(VERSION 3.23)
+PROJECT(UTS-Software-Engineer-Studio-Marking)
+
+file(GLOB SRC1 test-exes/Test.cpp *.cpp)
+add_executable(assign-1 ${SRC1})
+
+

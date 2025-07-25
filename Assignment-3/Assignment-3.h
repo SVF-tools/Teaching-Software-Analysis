@@ -1,64 +1,136 @@
-//===- Software-Analysis-Teaching Assignment 3-------------------------------------//
+//===- Assignment-3.h -- Taint analysis ------------------//
 //
-//     SVF: Static Value-Flow Analysis Framework for Source Code
+//                     SVF: Static Value-Flow Analysis
 //
-// Copyright (C) <2013->
+// Copyright (C) <2013-2022>  <Yulei Sui>
 //
 
 // This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
+// it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
+// GNU Affero General Public License for more details.
 
-// You should have received a copy of the GNU General Public License
+// You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//===-----------------------------------------------------------------------===//
-
+//===----------------------------------------------------------------------===//
 /*
- // Software-Analysis-Teaching Assignment 3 : Andersen's pointer analysis
- //
- // 
+ * Graph reachability, Andersen's pointer analysis and taint analysis
+ *
+ * Created on: Feb 18, 2024
  */
-#ifndef ASSIGNMENT_3_H_
-#define ASSIGNMENT_3_H_
+
+#ifndef SOFTWARE_SECURITY_ANALYSIS_ASSIGNMENT_3_H
+#define SOFTWARE_SECURITY_ANALYSIS_ASSIGNMENT_3_H
+
 #include "SVF-LLVM/LLVMUtil.h"
+#include "SVF-LLVM/SVFIRBuilder.h"
 #include "WPA/Andersen.h"
+#include <filesystem>
+namespace fs = std::filesystem;
 
-class AndersenPTA: public SVF::AndersenBase
-{
-public:
-    // Constructor
-    AndersenPTA(SVF::SVFIR* _pag) : AndersenBase(_pag){};
+#define CUR_DIR() (fs::path(__FILE__).parent_path())
 
-    //dump constraint graph
-    void dump_consCG(std::string name)
-    {
-        consCG->dump(name);
-    };
+using namespace SVF;
 
-private:
-	
-    // Process all the address constraint edges
-    void processAllAddr();
+class AndersenPTA : public SVF::AndersenBase {
+ public:
+	// Constructor
+	AndersenPTA(SVF::SVFIR* _pag)
+	: AndersenBase(_pag){};
 
-    // To be implemented
-    virtual void solveWorklist() override;
+	// dump constraint graph
+	void dump_consCG(std::string name) {
+		consCG->dump(name);
+	};
 
-    /// Add copy edge on constraint graph
-    virtual bool addCopyEdge(SVF::NodeID src, SVF::NodeID dst) override
-    {
-        if (consCG->addCopyCGEdge(src, dst))
-            return true;
-	else
-            return false;
-    }
+	void analyze() override;
 
+ private:
+	// To be implemented
+	void solveWorklist() override;
+
+	/// Add copy edge on constraint graph
+	virtual bool addCopyEdge(SVF::NodeID src, SVF::NodeID dst) override {
+		if (consCG->addCopyCGEdge(src, dst))
+			return true;
+		else
+			return false;
+	}
+	/// Return the field object (GepObjVar) given a struct object and a field index
+	inline NodeID getGepObjVar(NodeID id, const APOffset& apOffset) {
+		return consCG->getGepObjVar(id,apOffset);
+	}
+};
+
+class ICFGTraversal {
+ public:
+	typedef std::vector<const ICFGNode*> CallStack;
+	typedef std::pair<const ICFGNode*, CallStack> ICFGNodeCallStackPair;
+
+ public:
+	ICFGTraversal(SVFIR* p)
+	: pag(p) {}
+
+	/// TODO: to be implemented context sensitive reachability
+	void reachability(const ICFGNode* curNode, const ICFGNode* sink);
+
+	// Return true if two pointers are aliases
+	bool aliasCheck(const CallICFGNode* src, const CallICFGNode* snk);
+
+	// TODO: Source and sink function names read from SrcSnk.txt
+	void readSrcSnkFromFile(const std::string& filename);
+
+	// The driver method for taint checking
+	void taintChecking();
+
+	// Identify source nodes on ICFG (i.e., call instruction with its callee function named 'src')
+	virtual std::set<const CallICFGNode*>& identifySources() {
+		for (const CallICFGNode* cs : pag->getCallSiteSet()) {
+			const FunObjVar* fun = cs->getCalledFunction();
+			if (checker_source_api.find(fun->getName()) != checker_source_api.end()) {
+				sources.insert(cs);
+			}
+		}
+		return sources;
+	}
+
+	// Identify sink nodes on ICFG (i.e., call instruction with its callee function named 'sink')
+	virtual std::set<const CallICFGNode*>& identifySinks() {
+		for (const CallICFGNode* cs : pag->getCallSiteSet()) {
+			const FunObjVar* fun = cs->getCalledFunction();
+			if (checker_sink_api.find(fun->getName()) != checker_sink_api.end()) {
+				sinks.insert(cs);
+			}
+		}
+		return sinks;
+	}
+
+	const std::set<std::string>& getPaths() {
+		return paths;
+	}
+
+ protected:
+	std::set<const CallICFGNode*> sources;
+	std::set<const CallICFGNode*> sinks;
+	Set<std::pair<const ICFGNode*, CallStack>> visited;
+	CallStack callstack;
+
+	SVFIR* pag;
+	std::set<std::string> paths;
+	std::vector<unsigned> path;
+
+ private:
+	AndersenPTA* ander;
+
+	// default source and sink function name API if SrcSnk.txt is not added
+	std::set<std::string> checker_source_api;
+	std::set<std::string> checker_sink_api;
 };
 
 #endif
